@@ -5,11 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Madeira Rústica — Mobiliário Artesanal por Medida</title>
 <meta name="description" content="Madeira Rústica — Móveis artesanais por medida para interior e exterior. Carpintaria de qualidade, personalizada às suas necessidades." />
-<link rel="icon" type="image/x-icon" href="favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="manifest" href="site.webmanifest" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,7 +19,7 @@
     --c-wood:      #C9A57B;
     --c-brown:     #8B5A2B;
     --c-dark:      #5C3A1E;
-    --c-deep:      #2A1A0F;   /* dark accent */
+    --c-deep:      #2A1A0F;
     --c-text:      #2A1A0F;
     --c-muted:     #6B5A48;
     --c-line:      rgba(42,26,15,0.12);
@@ -167,15 +162,6 @@
   }
   .nav-links a:hover { color: var(--c-brown); }
   .nav-links a:hover::after { width: 100%; }
-
-  .nav-links a.nav-cta {
-    margin-left: 8px;
-    padding: 10px 22px;
-    color: var(--c-cream);
-    font-size: 0.88rem;
-  }
-  .nav-links a.nav-cta:hover { color: var(--c-cream); }
-  .nav-links a.nav-cta::after { display: none; }
 
   .hamburger {
     display: none;
@@ -328,7 +314,6 @@
     50%      { transform: translateY(-14px); }
   }
   .hero-art::before {
-    /* wood grain */
     content: '';
     position: absolute; inset: 0;
     background:
@@ -724,7 +709,6 @@
     background-repeat: no-repeat;
     border: 1.5px solid var(--c-wood);
   }
-  .modal .btn { width: 100%; justify-content: center; }
   body.modal-open { overflow: hidden; }
 
   /* ---------- Project Modal & Carousel ---------- */
@@ -1380,7 +1364,6 @@
       font-size: 1rem;
     }
     .nav-links li:last-child a { border-bottom: none; }
-    .nav-cta { margin: 12px 0 0; text-align: center; justify-content: center; }
     .hamburger { display: inline-flex; }
 
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -1426,7 +1409,7 @@
 <header id="site-header">
   <div class="container nav">
     <a href="#hero" class="brand" data-testid="brand-logo">
-      <img src="logo.jpg" alt="Madeira Rústica" />
+      <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira Rústica" />
       <span class="brand-name">Madeira Rústica</span>
     </a>
 
@@ -1436,7 +1419,6 @@
       <li><a href="#projetos" data-testid="nav-projetos">Projetos</a></li>
       <li><a href="#porque" data-testid="nav-porque">Porquê nós</a></li>
       <li><a href="#contacto" data-testid="nav-contacto">Contacto</a></li>
-      <li><a href="#contacto" class="btn btn-primary nav-cta" data-testid="nav-cta">Pedir Orçamento</a></li>
     </ul>
 
     <button class="hamburger" id="hamburger" aria-label="Menu" data-testid="hamburger-btn">
@@ -1449,23 +1431,22 @@
 <section class="hero" id="hero">
   <div class="container hero-grid">
     <div class="hero-text">
-      <span class="eyebrow hero-in-1"><span class="dot"></span>Carpintaria artesanal · projeto a projeto</span>
+      <span class="eyebrow hero-in-1"><span class="dot"></span>Foco na vertente Rústica, onde cada projecto é único em si mesmo</span>
       <h1 class="hero-in-2">
-        Móveis feitos à <span class="accent">mão,</span><br/>
+        Móveis feitos à <span class="accent">mão</span>,<br/>
         pensados <span class="accent">à medida</span>.
       </h1>
       <p class="lead hero-in-3">
-        Na Madeira Rústica desenhamos e construímos mobiliário de interior e exterior totalmente personalizado, combinando técnica tradicional com um olhar moderno sobre cada detalhe.
+        Na Madeira Rústica apostamos num trabalho totalmente personalizado, apostando na técnica de execução tradicional, por forma a construir com um cariz claramente rústico em cada detalhe.
       </p>
       <div class="hero-actions hero-in-4">
-        <a href="#contacto" class="btn btn-primary" data-testid="hero-cta-primary">
-          Pedir Orçamento
+        <a href="#projetos" class="btn btn-primary" data-testid="hero-cta-secondary">
+          Ver Projetos
           <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#projetos" class="btn btn-ghost" data-testid="hero-cta-secondary">Ver Projetos</a>
       </div>
       <div class="hero-stats hero-in-4">
-        <div class="stat"><div class="num">À medida</div><div class="lbl">Cada projeto único</div></div>
+        <div class="stat"><div class="num">À medida</div><div class="lbl">Cada projecto único</div></div>
         <div class="stat"><div class="num">Madeira nobre</div><div class="lbl">Materiais selecionados</div></div>
         <div class="stat"><div class="num">Feito à mão</div><div class="lbl">Atenção ao detalhe</div></div>
       </div>
@@ -1499,13 +1480,10 @@
 <section class="about" id="sobre">
   <div class="container about-grid">
     <div class="about-text reveal">
-      <span class="eyebrow"><span class="dot"></span>Sobre nós</span>
-      <h2>Tradição que respira modernidade.</h2>
+      <span class="eyebrow"><span class="dot"></span>Tradição</span>
+      <h2>Somos uma marcenaria especializada em mobiliário rústico, construído à medida.</h2>
       <p>
-        Somos uma marcenaria especializada em mobiliário artesanal feito à medida. Construímos móveis para o lar e todo o tipo de arrumos — interiores e exteriores — sempre adaptados às necessidades reais de cada espaço e de cada família.
-      </p>
-      <p>
-        Trabalhamos com madeiras nobres como carvalho, pinho tratado e castanho, valorizando a textura, o veio e o tempo certo de cada material. O resultado são peças únicas, duradouras e profundamente honestas.
+        O resultado são peças únicas, duradouras e construídas com alma, em total contraponto com produção em série. Não existem à venda no mercado.
       </p>
 
       <div class="values">
@@ -1535,7 +1513,7 @@
 
     <div class="about-art reveal delay-2" aria-hidden="true">
       <div class="about-quote">
-        <p>“A boa madeira pede tempo. Pede mãos que escutam o veio antes de cortar.”</p>
+        <p>"A boa madeira pede tempo. Pede mãos que escutam o veio antes de cortar."</p>
         <span>— Equipa Madeira Rústica</span>
       </div>
     </div>
@@ -1557,7 +1535,7 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V8a2 2 0 012-2h12a2 2 0 012 2v13M9 21v-7h6v7M8 11h8"/></svg>
         </div>
         <h3>Móveis de Interior</h3>
-        <p>Estantes, mesas, camas, cómodas e peças centrais que dão personalidade a cada divisão.</p>
+        <p>Estantes e móveis à medida, com as madeiras mais indicadas para cada projecto.</p>
         <button class="more" data-service="interior" data-testid="more-interior">Saber mais →</button>
       </div>
 
@@ -1566,7 +1544,7 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M5 8l2.3 2.3M19 8l-2.3 2.3M4 14h16M6 20h12M3 14l3 6M21 14l-3 6"/></svg>
         </div>
         <h3>Móveis de Exterior</h3>
-        <p>Decks, pérgolas, mesas e bancos de jardim em madeira tratada para resistirem a todas as estações.</p>
+        <p>Mesas e cadeiras de jardim, e arrumos para o exterior.</p>
         <button class="more" data-service="exterior" data-testid="more-exterior">Saber mais →</button>
       </div>
 
@@ -1575,7 +1553,7 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
         </div>
         <h3>Arrumos Personalizados</h3>
-        <p>Roupeiros, despensas, closets e arrecadações que aproveitam cada centímetro útil.</p>
+        <p>Roupeiros, arrumos por medida para cozinha, e bancos com arrumação interior.</p>
         <button class="more" data-service="arrumos" data-testid="more-arrumos">Saber mais →</button>
       </div>
 
@@ -1584,7 +1562,7 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 3-3 3 3 3-3 3 3 3-3M3 13l3 3 3-3 3 3 3-3 3 3 3-3M3 20h18"/></svg>
         </div>
         <h3>Mobiliário por Medida</h3>
-        <p>Projeto desde o esboço até à instalação, ajustado ao seu espaço e ao seu estilo de vida.</p>
+        <p>Projecto desde o esboço até à instalação, ajustado ao seu espaço e ao seu estilo de vida.</p>
         <button class="more" data-service="medida" data-testid="more-medida">Saber mais →</button>
       </div>
     </div>
@@ -1595,41 +1573,41 @@
 <section class="gallery" id="projetos">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Projetos recentes</span>
-      <h2>Cada projeto, uma história em madeira</h2>
-      <p>Uma seleção do que saiu da nossa oficina nos últimos meses.</p>
+      <span class="eyebrow"><span class="dot"></span>Projectos Recentes</span>
+      <h2>Cada projecto, uma história em madeira</h2>
+      <p>Uma seleção dos projectos pensados, planeados, construídos e executados com alma, na sua plenitude, na nossa oficina.</p>
     </div>
 
     <div class="gallery-grid">
-      <div class="gallery-item reveal" data-project="p1" data-testid="gallery-1" tabindex="0" role="button" aria-label="Ver projeto: Cozinha em carvalho maciço">
+      <div class="gallery-item reveal" data-project="p1" data-testid="gallery-1" tabindex="0" role="button" aria-label="Ver projecto: Cozinha em carvalho maciço">
         <span class="gallery-tag">Cozinha</span>
         <svg class="gallery-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
         <div class="gallery-caption"><h4>Cozinha em carvalho maciço</h4><span>Vila Nova de Gaia</span></div>
       </div>
-      <div class="gallery-item reveal delay-1" data-project="p2" data-testid="gallery-2" tabindex="0" role="button" aria-label="Ver projeto: Armário de quarto por medida">
+      <div class="gallery-item reveal delay-1" data-project="p2" data-testid="gallery-2" tabindex="0" role="button" aria-label="Ver projecto: Armário de quarto por medida">
         <span class="gallery-tag">Quarto</span>
         <svg class="gallery-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
         <div class="gallery-caption"><h4>Armário de quarto por medida</h4><span>Porto · 4,2m de frente</span></div>
       </div>
-      <div class="gallery-item reveal delay-2" data-project="p3" data-testid="gallery-3" tabindex="0" role="button" aria-label="Ver projeto: Deck exterior em pinho tratado">
+      <div class="gallery-item reveal delay-2" data-project="p3" data-testid="gallery-3" tabindex="0" role="button" aria-label="Ver projecto: Deck exterior em pinho tratado">
         <span class="gallery-tag">Exterior</span>
         <svg class="gallery-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
         <div class="gallery-caption"><h4>Deck exterior em pinho tratado</h4><span>Casa de campo · Braga</span></div>
       </div>
-      <div class="gallery-item reveal delay-1" data-project="p4" data-testid="gallery-4" tabindex="0" role="button" aria-label="Ver projeto: Estante de sala em castanho">
+      <div class="gallery-item reveal delay-1" data-project="p4" data-testid="gallery-4" tabindex="0" role="button" aria-label="Ver projecto: Estante de sala em castanho">
         <span class="gallery-tag">Sala</span>
         <svg class="gallery-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
         <div class="gallery-caption"><h4>Estante de sala em castanho</h4><span>Apartamento · Lisboa</span></div>
       </div>
-      <div class="gallery-item reveal delay-2" data-project="p5" data-testid="gallery-5" tabindex="0" role="button" aria-label="Ver projeto: Closet com ilha central">
+      <div class="gallery-item reveal delay-2" data-project="p5" data-testid="gallery-5" tabindex="0" role="button" aria-label="Ver projecto: Closet com ilha central">
         <span class="gallery-tag">Closet</span>
         <svg class="gallery-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
         <div class="gallery-caption"><h4>Closet com ilha central</h4><span>Moradia · Cascais</span></div>
       </div>
-      <div class="gallery-item reveal delay-3" data-project="p6" data-testid="gallery-6" tabindex="0" role="button" aria-label="Ver projeto: Pérgola e mesa de jardim">
+      <div class="gallery-item reveal delay-3" data-project="p6" data-testid="gallery-6" tabindex="0" role="button" aria-label="Ver projecto: Mesa de jardim em pinho">
         <span class="gallery-tag">Jardim</span>
         <svg class="gallery-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
-        <div class="gallery-caption"><h4>Pérgola e mesa de jardim</h4><span>Quinta · Aveiro</span></div>
+        <div class="gallery-caption"><h4>Mesa de jardim em pinho</h4><span>Quinta · Aveiro</span></div>
       </div>
     </div>
   </div>
@@ -1641,7 +1619,6 @@
     <div class="section-head reveal">
       <span class="eyebrow"><span class="dot"></span>Porquê escolher-nos</span>
       <h2>Quatro motivos que fazem a diferença</h2>
-      <p>Pequenos gestos, decisões honestas e uma exigência que se nota na peça final.</p>
     </div>
 
     <div class="why-grid">
@@ -1654,20 +1631,20 @@
       <div class="why-card reveal delay-1" data-testid="why-2">
         <span class="num">02</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>
-        <h3>Projeto à medida</h3>
-        <p>Visitamos o espaço, desenhamos consigo e ajustamos cada detalhe — encaixes, ferragens, acabamentos.</p>
+        <h3>Projecto à medida</h3>
+        <p>Visitamos e analisamos o espaço, aconselhamos sobre possíveis soluções, e ajustamos cada detalhe às especificidades do local.</p>
       </div>
       <div class="why-card reveal delay-2" data-testid="why-3">
         <span class="num">03</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         <h3>Prazos cumpridos</h3>
-        <p>Definimos prazos realistas e respeitamo-los. Comunicação clara em cada fase do projeto.</p>
+        <p>Definimos prazos realistas e respeitamo-los. Comunicação clara em cada fase do projecto.</p>
       </div>
       <div class="why-card reveal delay-3" data-testid="why-4">
         <span class="num">04</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        <h3>Acabamentos artesanais</h3>
-        <p>Lixagem, óleos e ceras aplicados manualmente, peça a peça. Toque natural, durabilidade real.</p>
+        <h3>Acabamentos Rústicos</h3>
+        <p>Trabalho árduo de bastidores — muito planeamento no pensamento do projecto em geral, e uma rigorosa disciplina em cada uma das muitas fases da execução. Cada etapa, um processo por si só. A soma de todas as etapas culmina na glória de um projecto concluído com tremendo brio e um imensurável sentimento de Missão Cumprida.</p>
       </div>
     </div>
   </div>
@@ -1679,7 +1656,6 @@
     <div class="section-head reveal">
       <span class="eyebrow"><span class="dot"></span>Vamos conversar</span>
       <h2>Conte-nos a sua ideia</h2>
-      <p>Responda em poucos passos e enviamos-lhe um orçamento sem compromisso.</p>
     </div>
 
     <div class="contact-grid">
@@ -1692,7 +1668,6 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.94.34 1.85.62 2.74a2 2 0 01-.45 2.11L8 9.91a16 16 0 006 6l1.34-1.34a2 2 0 012.11-.45c.89.28 1.8.49 2.74.62A2 2 0 0122 16.92z"/></svg>
             </div>
             <div>
-              <div class="lbl">Telefone</div>
               <a class="val" href="tel:+351910444449">910 444 449</a>
             </div>
           </li>
@@ -1701,8 +1676,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
-              <div class="lbl">Email</div>
-              <a class="val" href="https://mail.google.com/mail/?view=cm&fs=1&to=info@madeirarustica.pt&su=Pedido%20de%20Or%C3%A7amento" target="_blank" rel="noopener">info@madeirarustica.pt</a>
+              <a class="val" href="mailto:info@madeirarustica.pt">info@madeirarustica.pt</a>
             </div>
           </li>
           <li data-testid="contact-hours">
@@ -1710,8 +1684,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
             </div>
             <div>
-              <div class="lbl">Horário oficina</div>
-              <div class="val">Seg–Sex · 9h00 – 18h00</div>
+              <div class="val">Seg – Sex · 09H00 – 18H00</div>
             </div>
           </li>
         </ul>
@@ -1748,10 +1721,10 @@
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-brand">
-          <img src="logo.jpg" alt="Madeira Rústica" />
+          <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira Rústica" />
           <span>Madeira Rústica</span>
         </div>
-        <p>Marcenaria artesanal especializada em mobiliário por medida para interior e exterior. Cada peça, uma história.</p>
+        <p>Marcenaria especializada em trabalhos rústicos, em mobiliário por medida para interior e exterior. Cada peça, uma história.</p>
       </div>
       <div class="footer-col">
         <h5>Navegação</h5>
@@ -1766,13 +1739,13 @@
         <h5>Contactos</h5>
         <ul>
           <li><a href="tel:+351910444449">910 444 449</a></li>
-          <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@madeirarustica.pt&su=Pedido%20de%20Or%C3%A7amento" target="_blank" rel="noopener">info@madeirarustica.pt</a></li>
-          <li><a href="#contacto">Pedir orçamento</a></li>
+          <li><a href="mailto:info@madeirarustica.pt">info@madeirarustica.pt</a></li>
         </ul>
       </div>
     </div>
     <div class="copyright">
-      <span>© <span id="year"></span> Madeira Rústica. Todos os direitos reservados.</span>
+      <span>® <span id="year"></span> Madeira Rústica. Todos os direitos reservados.</span>
+      <span class="made">Construído à mão, com madeira e atenção.</span>
     </div>
   </div>
 </footer>
@@ -1788,10 +1761,6 @@
     <p class="modal-lead" id="modal-lead">—</p>
     <h4>O que está incluído</h4>
     <ul id="modal-list"></ul>
-    <a href="#contacto" class="btn btn-primary" id="modal-cta" data-testid="modal-cta">
-      Pedir Orçamento
-      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
   </div>
 </div>
 
@@ -1817,7 +1786,7 @@
       <div class="project-meta" id="project-meta"></div>
       <p class="desc" id="project-desc">—</p>
       <a href="#contacto" class="btn btn-primary" id="project-cta" data-testid="project-cta">
-        Pedir um projeto semelhante
+        Pedir um projecto semelhante
         <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -1835,7 +1804,7 @@
 <!-- ============== TOAST ============== -->
 <div class="toast" id="toast" role="status" aria-live="polite" data-testid="toast">
   <span class="toast-dot"></span>
-  <!--<span id="toast-msg">Em breve disponível</span> -->
+  <span id="toast-msg">Em breve disponível</span>
 </div>
 
 <script>
@@ -1874,8 +1843,6 @@
   }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
   reveals.forEach(el => io.observe(el));
 
-  // Failsafe: ensure already-visible elements reveal immediately,
-  // and after 2.5s force any remaining hidden element to show.
   const revealVisible = () => {
     const vh = window.innerHeight;
     reveals.forEach(el => {
@@ -1888,7 +1855,7 @@
   setTimeout(revealVisible, 300);
   setTimeout(() => reveals.forEach(el => el.classList.add('in')), 2500);
 
-  // -------- Form handling (client-side only) --------
+  // -------- Form handling --------
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   form.addEventListener('submit', (e) => {
@@ -1919,23 +1886,17 @@
       icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V8a2 2 0 012-2h12a2 2 0 012 2v13M9 21v-7h6v7M8 11h8"/></svg>',
       lead: 'Peças que dão personalidade e função a cada divisão da casa. Desenhamos e construímos mobiliário de interior em madeira maciça, ajustado às proporções do seu espaço e ao seu estilo de vida.',
       items: [
-        'Estantes, livrarias e móveis de TV à medida',
-        'Mesas de jantar, secretárias e bancadas em madeira maciça',
-        'Camas, mesas-de-cabeceira e cómodas',
-        'Cozinhas e ilhas com acabamentos artesanais',
-        'Madeiras: carvalho, castanho, freixo ou pinho nórdico'
+        'Estantes e móveis à medida',
+        'Madeiras: desde as madeiras mais nobres às soluções mais económicas, consoante a natureza e o propósito de cada projecto, mas sempre com aposta e foco na durabilidade e na resistência'
       ]
     },
     exterior: {
       title: 'Móveis de Exterior',
       icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M5 8l2.3 2.3M19 8l-2.3 2.3M4 14h16M6 20h12M3 14l3 6M21 14l-3 6"/></svg>',
-      lead: 'Mobiliário pensado para resistir ao sol, à chuva e ao tempo. Trabalhamos com madeiras tratadas em autoclave e acabamentos protetores que mantêm a beleza natural por muitos anos.',
+      lead: 'Mobiliário pensado para resistir ao sol, à chuva e ao tempo. Trabalhamos com madeiras tratadas e acabamentos protetores que mantêm a beleza natural por muitos anos.',
       items: [
-        'Decks e pavimentos de exterior em pinho tratado',
-        'Pérgolas, alpendres e estruturas com cobertura',
         'Mesas, bancos e cadeiras de jardim',
-        'Floreiras, vedações e portões em madeira',
-        'Tratamento autoclave classe IV + óleo protetor'
+        'Floreiras, vedações e portões em madeira'
       ]
     },
     arrumos: {
@@ -1943,23 +1904,20 @@
       icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>',
       lead: 'Soluções de arrumação que aproveitam cada centímetro útil do seu espaço. Desde roupeiros a despensas, desenhamos divisórias e gavetas pensadas para facilitar o dia-a-dia.',
       items: [
-        'Roupeiros embutidos e closets com ilha',
-        'Despensas e arrumos de cozinha por medida',
-        'Arrecadações, garagens e zonas técnicas',
-        'Bancos com arrumação interior e portas escondidas',
-        'Ferragens premium com fecho suave (Blum, Hettich)'
+        'Roupeiros',
+        'Arrumos por medida, para cozinha',
+        'Bancos com arrumação interior'
       ]
     },
     medida: {
       title: 'Mobiliário por Medida',
       icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 3-3 3 3 3-3 3 3 3-3M3 13l3 3 3-3 3 3 3-3 3 3 3-3M3 20h18"/></svg>',
-      lead: 'Quando o que existe não chega, desenhamos. Acompanhamos o projeto desde o levantamento de medidas até à instalação, com amostras de madeira e acabamentos para que possa decidir com confiança.',
+      lead: 'Quando o que existe não chega, desenhamos. Acompanhamos o projecto desde o levantamento de medidas até à instalação, com amostras de madeira e acabamentos para que possa decidir com confiança.',
       items: [
         'Visita técnica e levantamento de medidas',
         'Amostras de madeira e acabamentos',
         'Construção integral na nossa oficina',
-        'Transporte, montagem e afinação no local',
-        'Garantia sobre estrutura e acabamentos'
+        'Transporte, montagem e afinação no local'
       ]
     }
   };
@@ -1970,7 +1928,6 @@
   const modalLead  = document.getElementById('modal-lead');
   const modalIcon  = document.getElementById('modal-icon');
   const modalList  = document.getElementById('modal-list');
-  const modalCta   = document.getElementById('modal-cta');
 
   const openModal = (key) => {
     const s = services[key];
@@ -1997,9 +1954,6 @@
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
-  modalCta.addEventListener('click', () => {
-    closeModal();
-  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
@@ -2016,7 +1970,7 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
   };
   waFab.addEventListener('click', () => {
-    window.open('https://wa.me/351910444449', '_blank');
+    showToast('Em breve disponível');
   });
 
   // -------- Project modal + Carousel --------
@@ -2027,9 +1981,9 @@
       desc: 'Cozinha completa em carvalho maciço com ilha central, frentes em ranhura vertical e bancada em pedra natural. Trabalho integral desde o desenho 3D inicial até à instalação e afinação no local. Iluminação LED embutida em todas as prateleiras altas.',
       meta: [
         { lbl: 'Localização', val: 'Vila Nova de Gaia' },
-        { lbl: 'Madeira',    val: 'Carvalho europeu' },
-        { lbl: 'Acabamento', val: 'Óleo natural fosco' },
-        { lbl: 'Duração',    val: '6 semanas' }
+        { lbl: 'Madeira',     val: 'Carvalho europeu' },
+        { lbl: 'Acabamento',  val: 'Óleo natural fosco' },
+        { lbl: 'Duração',     val: '6 semanas' }
       ],
       slides: 5
     },
@@ -2039,9 +1993,9 @@
       desc: 'Armário de parede a parede com 4,2m de frente e 2,7m de altura. Portas de correr em madeira folheada com puxador embutido. Interior totalmente personalizado com gaveteiros, varões duplos e zona de calçado.',
       meta: [
         { lbl: 'Localização', val: 'Porto' },
-        { lbl: 'Dimensões',  val: '4,2m × 2,7m' },
-        { lbl: 'Acabamento', val: 'Folheado castanho' },
-        { lbl: 'Ferragens',  val: 'Blum SoftClose' }
+        { lbl: 'Dimensões',   val: '4,2m × 2,7m' },
+        { lbl: 'Acabamento',  val: 'Folheado castanho' },
+        { lbl: 'Ferragens',   val: 'Blum SoftClose' }
       ],
       slides: 4
     },
@@ -2051,9 +2005,9 @@
       desc: 'Deck contínuo de 80m² com guarda em ripado vertical e pérgola integrada. Madeira tratada em autoclave classe IV para resistência a humidade e insetos. Estrutura sobre apoios reguláveis para nivelamento perfeito.',
       meta: [
         { lbl: 'Localização', val: 'Casa de campo · Braga' },
-        { lbl: 'Área',       val: '80 m²' },
-        { lbl: 'Madeira',    val: 'Pinho nórdico tratado' },
-        { lbl: 'Garantia',   val: '10 anos estrutura' }
+        { lbl: 'Área',        val: '80 m²' },
+        { lbl: 'Madeira',     val: 'Pinho nórdico tratado' },
+        { lbl: 'Duração',     val: '4 semanas' }
       ],
       slides: 5
     },
@@ -2063,9 +2017,9 @@
       desc: 'Estante de teto a chão em castanho maciço, com 18 nichos e 3 zonas com porta. Encaixes em cauda-de-andorinha tradicional, sem qualquer parafuso à vista. Iluminação LED dimerizável integrada nas prateleiras de leitura.',
       meta: [
         { lbl: 'Localização', val: 'Apartamento · Lisboa' },
-        { lbl: 'Madeira',    val: 'Castanho maciço' },
-        { lbl: 'Encaixes',   val: 'Cauda-de-andorinha' },
-        { lbl: 'Duração',    val: '5 semanas' }
+        { lbl: 'Madeira',     val: 'Castanho maciço' },
+        { lbl: 'Encaixes',    val: 'Cauda-de-andorinha' },
+        { lbl: 'Duração',     val: '5 semanas' }
       ],
       slides: 4
     },
@@ -2075,21 +2029,21 @@
       desc: 'Closet de 14m² com ilha central em madeira de freixo, espelhos integrados nas portas e iluminação automática por sensor de movimento. Zona de penteadeira com tampo em mármore e bancos forrados.',
       meta: [
         { lbl: 'Localização', val: 'Moradia · Cascais' },
-        { lbl: 'Área',       val: '14 m²' },
-        { lbl: 'Ilha',       val: 'Freixo + mármore' },
-        { lbl: 'Iluminação', val: 'Sensor automático' }
+        { lbl: 'Área',        val: '14 m²' },
+        { lbl: 'Ilha',        val: 'Freixo + mármore' },
+        { lbl: 'Iluminação',  val: 'Sensor automático' }
       ],
       slides: 5
     },
     p6: {
-      title: 'Pérgola e mesa de jardim',
+      title: 'Mesa de jardim em pinho',
       tag: 'Jardim',
-      desc: 'Pérgola de 5×4m com cobertura ripada e mesa de refeições para 10 pessoas em pinho lameliar tratado. Estrutura calculada para resistir a ventos fortes e isolada com tratamento contra insetos xilófagos.',
+      desc: 'Mesa de refeições para 10 pessoas em pinho lameliar tratado, com bancos integrados. Estrutura calculada para resistir a ventos fortes e isolada com tratamento contra insetos xilófagos.',
       meta: [
         { lbl: 'Localização', val: 'Quinta · Aveiro' },
-        { lbl: 'Pérgola',    val: '5 × 4 m' },
-        { lbl: 'Mesa',       val: '3,2m · 10 lugares' },
-        { lbl: 'Madeira',    val: 'Pinho lameliar' }
+        { lbl: 'Mesa',        val: '3,2m · 10 lugares' },
+        { lbl: 'Madeira',     val: 'Pinho lameliar' },
+        { lbl: 'Duração',     val: '3 semanas' }
       ],
       slides: 4
     }
@@ -2203,7 +2157,6 @@
     }
   });
 
-  // Keyboard navigation (extends ESC handler)
   document.addEventListener('keydown', (e) => {
     if (!projectModal.classList.contains('open')) return;
     if (e.key === 'Escape')      closeProject();

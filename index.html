@@ -348,9 +348,10 @@
   /* auto slideshow */
   .slide-track { position: absolute; inset: 0; display: flex; transition: transform .8s ease-in-out; }
   .slide-frame {
-    flex: 0 0 100%; height: 100%;
+    flex: 0 0 100%; height: 100%; position: relative; overflow: hidden;
     background: linear-gradient(135deg, var(--c-light) 0%, var(--c-wood) 100%);
   }
+  .slide-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .slide-frame.t2 { background: linear-gradient(150deg, #d9c19a 0%, var(--c-wood) 70%, var(--c-dark) 100%); }
   .slide-frame.t3 { background: linear-gradient(120deg, var(--c-cream) 0%, var(--c-wood) 80%); }
   .slide-frame.t4 { background: linear-gradient(160deg, var(--c-wood) 0%, var(--c-dark) 100%); }
@@ -672,10 +673,14 @@
 
       <!-- PROJECTO 1 -->
       <div class="gallery-item reveal" data-project="p1" tabindex="0" role="button">
-        <span class="gallery-tag">Cozinha</span>
-        <div class="slide-track"><div class="slide-frame"><div class="slide-frame-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div></div><div class="slide-frame t2"><div class="slide-frame-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div></div><div class="slide-frame t3"><div class="slide-frame-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 14h20"/></svg></div></div></div>
+        <span class="gallery-tag">Arrumos</span>
+        <div class="slide-track">
+          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/q_auto/f_auto/P1/DSC_4510_hxfmi3.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
+          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/q_auto/f_auto/P1/DSC_4493_kgb1nu.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
+          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/q_auto/f_auto/P1/IMG_2976_pwrcar.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
+        </div>
         <div class="slide-dots"></div>
-        <div class="gallery-caption"><h4>Cozinha em carvalho maciço</h4><span>Vila Nova de Gaia</span></div>
+        <div class="gallery-caption"><h4>Arrumo de Ferramentas — Fixo na Parede</h4><span>Oficina · Portugal</span></div>
       </div>
 
       <!-- PROJECTO 2 -->
@@ -1125,7 +1130,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.clas
 
 // ======== PROJECT MODAL ========
 const projects = {
-  p1: { title: 'Cozinha em carvalho maciço', tag: 'Cozinha', desc: 'Cozinha completa em carvalho maciço com ilha central, frentes em ranhura vertical e bancada em pedra natural.', meta: [{lbl:'Localização',val:'Vila Nova de Gaia'},{lbl:'Madeira',val:'Carvalho europeu'},{lbl:'Acabamento',val:'Óleo natural fosco'},{lbl:'Duração',val:'6 semanas'}], slides: 5 },
+  p1: { title: 'Arrumo de Ferramentas — Fixo na Parede', tag: 'Arrumos', desc: 'Bancada de trabalho rústica em madeira maciça com painel de ferramentas fixo na parede. Construída na nossa oficina com madeiras selecionadas, combinando funcionalidade e cariz rústico.', meta: [{lbl:'Tipo',val:'Fixo na parede'},{lbl:'Material',val:'Madeira maciça'},{lbl:'Uso',val:'Oficina'},{lbl:'Estilo',val:'Rústico'}], slides: 3 },
   p2: { title: 'Armário de quarto por medida', tag: 'Quarto', desc: 'Armário de parede a parede com 4,2m de frente. Portas de correr em madeira folheada com puxador embutido.', meta: [{lbl:'Localização',val:'Porto'},{lbl:'Dimensões',val:'4,2m × 2,7m'},{lbl:'Acabamento',val:'Folheado castanho'},{lbl:'Ferragens',val:'Blum SoftClose'}], slides: 4 },
   p3: { title: 'Deck exterior em pinho tratado', tag: 'Exterior', desc: 'Deck contínuo de 80m² com guarda em ripado vertical. Madeira tratada em autoclave classe IV.', meta: [{lbl:'Localização',val:'Braga'},{lbl:'Área',val:'80 m²'},{lbl:'Madeira',val:'Pinho nórdico'},{lbl:'Duração',val:'4 semanas'}], slides: 5 },
   p4: { title: 'Estante de sala em castanho', tag: 'Sala', desc: 'Estante de teto a chão em castanho maciço, com 18 nichos e 3 zonas com porta. Encaixes em cauda-de-andorinha.', meta: [{lbl:'Localização',val:'Lisboa'},{lbl:'Madeira',val:'Castanho maciço'},{lbl:'Encaixes',val:'Cauda-de-andorinha'},{lbl:'Duração',val:'5 semanas'}], slides: 4 },

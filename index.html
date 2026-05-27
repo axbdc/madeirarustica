@@ -675,9 +675,9 @@
       <div class="gallery-item reveal" data-project="p1" tabindex="0" role="button">
         <span class="gallery-tag">Arrumos</span>
         <div class="slide-track">
-          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/q_auto/f_auto/P1/DSC_4510_hxfmi3.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
-          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/q_auto/f_auto/P1/DSC_4493_kgb1nu.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
-          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/q_auto/f_auto/P1/IMG_2976_pwrcar.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
+          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/v1779301454/DSC_4510_hxfmi3.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
+          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/v1779301450/DSC_4493_kgb1nu.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
+          <div class="slide-frame"><img src="https://res.cloudinary.com/dtfcvu4gu/image/upload/v1779301450/IMG_2976_pwrcar.jpg" alt="Arrumo de Ferramentas - Fixo na Parede" loading="lazy" /></div>
         </div>
         <div class="slide-dots"></div>
         <div class="gallery-caption"><h4>Arrumo de Ferramentas — Fixo na Parede</h4><span>Oficina · Portugal</span></div>
@@ -1195,7 +1195,41 @@ const openProject = key => {
   document.getElementById('project-tag').textContent   = p.tag;
   document.getElementById('project-desc').textContent  = p.desc;
   document.getElementById('project-meta').innerHTML    = p.meta.map(m => `<div><div class="lbl">${m.lbl}</div><div class="val">${m.val}</div></div>`).join('');
-  buildSlides(p.slides);
+
+  // Try to get real images from the gallery card
+  const galleryItem = document.querySelector(`.gallery-item[data-project="${key}"]`);
+  const realImgs = galleryItem ? galleryItem.querySelectorAll('.slide-frame img') : [];
+
+  carouselTrack.innerHTML = ''; carouselDots.innerHTML = '';
+  if (realImgs.length > 0) {
+    // Use real images
+    realImgs.forEach((img, i) => {
+      const s = document.createElement('div');
+      s.className = 'carousel-slide';
+      s.style.cssText = 'background:#1B100A;position:relative;overflow:hidden;';
+      s.innerHTML = `<span class="carousel-slide-num">${i+1} / ${realImgs.length}</span><img src="${img.src}" alt="${img.alt}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />`;
+      carouselTrack.appendChild(s);
+      const d = document.createElement('button');
+      d.setAttribute('aria-label', 'Foto ' + (i+1));
+      d.addEventListener('click', () => { currentSlide = i; updateCarousel(); });
+      carouselDots.appendChild(d);
+    });
+    totalSlides = realImgs.length;
+  } else {
+    // Fallback to gradient slides
+    for (let i = 0; i < p.slides; i++) {
+      const s = document.createElement('div');
+      s.className = 'carousel-slide tone-' + ((i % 4) + 1);
+      s.innerHTML = `<span class="carousel-slide-num">${i+1} / ${p.slides}</span><div class="carousel-slide-icon">${slideIcons[i % slideIcons.length]}</div>`;
+      carouselTrack.appendChild(s);
+      const d = document.createElement('button');
+      d.setAttribute('aria-label', 'Foto ' + (i+1));
+      d.addEventListener('click', () => { currentSlide = i; updateCarousel(); });
+      carouselDots.appendChild(d);
+    }
+    totalSlides = p.slides;
+  }
+  currentSlide = 0; updateCarousel(); startModalAuto();
   projectModal.classList.add('open'); document.body.classList.add('modal-open');
 };
 const closeProject = () => {

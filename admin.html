@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>GestÃ£o Â· Madeira RÃºstica</title>
+<title>Gestão · Madeira Rústica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -155,16 +155,16 @@
 <!-- ===================== LOGIN ===================== -->
 <div id="login">
   <div class="login-card">
-    <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira RÃºstica" />
-    <h1>GestÃ£o de Projetos</h1>
-    <p>Ãrea reservada. Inicie sessÃ£o para gerir os projetos do site.</p>
+    <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira Rústica" />
+    <h1>Gestão de Projetos</h1>
+    <p>Área reservada. Inicie sessão para gerir os projetos do site.</p>
     <div class="field">
       <label for="email">Email</label>
       <input type="email" id="email" placeholder="o-seu-email@exemplo.pt" autocomplete="username" />
     </div>
     <div class="field">
       <label for="pass">Palavra-passe</label>
-      <input type="password" id="pass" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="current-password" />
+      <input type="password" id="pass" placeholder="••••••••" autocomplete="current-password" />
     </div>
     <button class="btn btn-primary" id="login-btn" style="width:100%;">Entrar</button>
     <div class="msg" id="login-msg"></div>
@@ -175,10 +175,10 @@
 <div id="app">
   <div class="topbar">
     <div class="brand">
-      <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira RÃºstica" />
+      <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira Rústica" />
       <div>
-        <div class="t">Madeira RÃºstica</div>
-        <div class="s">GestÃ£o de projetos</div>
+        <div class="t">Madeira Rústica</div>
+        <div class="s">Gestão de projetos</div>
       </div>
     </div>
     <button class="btn btn-ghost" id="logout-btn">
@@ -195,7 +195,7 @@
     </button>
   </div>
 
-  <div id="list"><div class="loading">A carregar projetosâ€¦</div></div>
+  <div id="list"><div class="loading">A carregar projetos…</div></div>
 </div>
 
 <!-- ===================== MODAL ===================== -->
@@ -213,23 +213,23 @@
 
     <div class="modal-body">
       <div class="row2">
-        <div class="field"><label>TÃ­tulo do projeto *</label><input type="text" id="f-titulo" placeholder="Ex: ArmÃ¡rio de quarto por medida" /></div>
+        <div class="field"><label>Título do projeto *</label><input type="text" id="f-titulo" placeholder="Ex: Armário de quarto por medida" /></div>
         <div class="field"><label>Categoria *</label>
           <select id="f-categoria">
             <option>Quarto</option><option>Sala</option><option>Cozinha</option><option>Arrumos</option>
-            <option>Closet</option><option>Exterior</option><option>Jardim</option><option>EscritÃ³rio</option><option>Entrada</option>
+            <option>Closet</option><option>Exterior</option><option>Jardim</option><option>Escritório</option><option>Entrada</option>
           </select>
         </div>
       </div>
 
-      <div class="field"><label>LocalizaÃ§Ã£o</label><input type="text" id="f-local" placeholder="Ex: Porto Â· 4,2m de frente" /></div>
+      <div class="field"><label>Localização</label><input type="text" id="f-local" placeholder="Ex: Porto · 4,2m de frente" /></div>
 
       <div class="field">
-        <label>Fotos do projeto (a 1Âª Ã© a capa) *</label>
+        <label>Fotos do projeto (a 1ª é a capa) *</label>
         <div class="seg">
           <button type="button" class="active" id="seg-url" data-mode="url">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
-            EndereÃ§o (URL)
+            Endereço (URL)
           </button>
           <button type="button" id="seg-up" data-mode="upload">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg>
@@ -238,7 +238,7 @@
         </div>
 
         <div id="pane-url" class="url-row">
-          <input type="text" id="f-foto-url" placeholder="Cola o endereÃ§o da foto e carrega em +" />
+          <input type="text" id="f-foto-url" placeholder="Cola o endereço da foto e carrega em +" />
           <button type="button" class="btn-add" id="foto-add" aria-label="Adicionar foto">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </button>
@@ -246,7 +246,7 @@
 
         <div id="pane-up" class="dropzone" style="display:none;">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg>
-          <div>Clica para escolher fotos do computador<br>(podes escolher vÃ¡rias de uma vez)</div>
+          <div>Clica para escolher fotos do computador<br>(podes escolher várias de uma vez)</div>
           <input type="file" id="f-foto-file" accept="image/*" multiple style="display:none;" />
         </div>
 
@@ -254,14 +254,14 @@
         <div class="hint" id="upload-hint"></div>
       </div>
 
-      <div class="field"><label>Breve descriÃ§Ã£o *</label><textarea id="f-desc" placeholder="Descreve o projeto, as madeiras usadas, o que o torna Ãºnicoâ€¦"></textarea></div>
+      <div class="field"><label>Breve descrição *</label><textarea id="f-desc" placeholder="Descreve o projeto, as madeiras usadas, o que o torna único…"></textarea></div>
 
       <div class="field" style="margin-bottom:6px;">
-        <label>Ficha tÃ©cnica (opcional)</label>
+        <label>Ficha técnica (opcional)</label>
         <div id="ficha-list"></div>
         <button type="button" class="add-line" id="ficha-add">
           <svg class="icon" style="width:15px;height:15px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-          Adicionar linha (ex: Material â€” Carvalho)
+          Adicionar linha (ex: Material — Carvalho)
         </button>
       </div>
 
@@ -283,8 +283,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============================================================
-   CONFIGURAÃ‡ÃƒO â€” substitui pelos teus dados do Supabase
-   (Project Settings â†’ API)
+   CONFIGURAÇÃO — substitui pelos teus dados do Supabase
+   (Project Settings → API)
    ============================================================ */
 const SUPABASE_URL      = "https://jkztusnsfjdgawexynzg.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_HMZdPXkrO_E3nu_ksHRDmg_7q-tK0eV";
@@ -300,16 +300,16 @@ let db = null, projetos = [], editId = null, fotos = [], configOk = true;
 if (SUPABASE_URL.startsWith("COLOCA") || SUPABASE_ANON_KEY.startsWith("COLOCA")) {
   configOk = false;
   document.body.innerHTML =
-    '<div class="config-warn"><h2>Falta a configuraÃ§Ã£o</h2>'
-    + '<p>Abre o ficheiro <code>admin.html</code> e, lÃ¡ no fundo, substitui <code>SUPABASE_URL</code> e '
+    '<div class="config-warn"><h2>Falta a configuração</h2>'
+    + '<p>Abre o ficheiro <code>admin.html</code> e, lá no fundo, substitui <code>SUPABASE_URL</code> e '
     + '<code>SUPABASE_ANON_KEY</code> pelos dados do teu projeto Supabase '
-    + '(em <code>Project Settings â†’ API</code>). Depois grava e atualiza esta pÃ¡gina.</p></div>';
+    + '(em <code>Project Settings → API</code>). Depois grava e atualiza esta página.</p></div>';
 }
 
 if (configOk) {
   db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  /* -------- AUTENTICAÃ‡ÃƒO -------- */
+  /* -------- AUTENTICAÇÃO -------- */
   async function checkSession(){
     const { data } = await db.auth.getSession();
     if (data.session) showApp(); else showLogin();
@@ -319,7 +319,7 @@ if (configOk) {
 
   async function doLogin(){
     const email=$('email').value.trim(), pass=$('pass').value;
-    const msg=$('login-msg'); msg.className='msg'; msg.textContent='A entrarâ€¦';
+    const msg=$('login-msg'); msg.className='msg'; msg.textContent='A entrar…';
     const { error } = await db.auth.signInWithPassword({ email, password: pass });
     if (error){ msg.className='msg err'; msg.textContent='Email ou palavra-passe incorretos.'; }
     else { msg.textContent=''; $('pass').value=''; showApp(); }
@@ -331,17 +331,17 @@ if (configOk) {
 
   /* -------- CARREGAR / LISTAR -------- */
   async function loadProjetos(){
-    $('list').innerHTML='<div class="loading">A carregar projetosâ€¦</div>';
+    $('list').innerHTML='<div class="loading">A carregar projetos…</div>';
     const { data, error } = await db.from('projetos').select('*').order('ordem',{ascending:true}).order('criado_em',{ascending:false});
-    if (error){ $('list').innerHTML='<div class="empty">Erro ao carregar. Verifica a configuraÃ§Ã£o e as regras (RLS) no Supabase.</div>'; return; }
+    if (error){ $('list').innerHTML='<div class="empty">Erro ao carregar. Verifica a configuração e as regras (RLS) no Supabase.</div>'; return; }
     projetos = data||[];
     renderList();
   }
 
   function renderList(){
-    $('count').textContent = projetos.length ? 'Â· '+projetos.length : '';
+    $('count').textContent = projetos.length ? '· '+projetos.length : '';
     if (!projetos.length){
-      $('list').innerHTML='<div class="empty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg><div>Ainda nÃ£o hÃ¡ projetos.<br>Carrega em â€œAdicionar projetoâ€ para criar o primeiro.</div></div>';
+      $('list').innerHTML='<div class="empty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg><div>Ainda não há projetos.<br>Carrega em “Adicionar projeto” para criar o primeiro.</div></div>';
       return;
     }
     $('list').innerHTML='<div class="grid">'+projetos.map(p=>{
@@ -354,7 +354,7 @@ if (configOk) {
         </div>
         <div class="body">
           <h3>${esc(p.titulo)}</h3>
-          <div class="loc">${esc(p.localizacao||'â€”')}</div>
+          <div class="loc">${esc(p.localizacao||'—')}</div>
           <div class="actions">
             <button class="edit" data-id="${p.id}"><svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>Editar</button>
             <button class="del" data-id="${p.id}"><svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>Apagar</button>
@@ -414,7 +414,7 @@ if (configOk) {
   $('pane-up').addEventListener('click',()=>$('f-foto-file').click());
   $('f-foto-file').addEventListener('change', async e=>{
     const files=[...e.target.files]; if(!files.length) return;
-    $('upload-hint').textContent='A carregar '+files.length+' foto(s)â€¦';
+    $('upload-hint').textContent='A carregar '+files.length+' foto(s)…';
     for(const file of files){
       const path = Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+file.name.replace(/[^\w.\-]/g,'_');
       const { error } = await db.storage.from('projetos').upload(path,file,{cacheControl:'3600',upsert:false});
@@ -422,7 +422,7 @@ if (configOk) {
       const { data } = db.storage.from('projetos').getPublicUrl(path);
       fotos.push(data.publicUrl); renderThumbs();
     }
-    $('upload-hint').textContent='Fotos carregadas âœ“';
+    $('upload-hint').textContent='Fotos carregadas ✓';
     e.target.value='';
   });
 
@@ -430,15 +430,15 @@ if (configOk) {
     $('thumbs').innerHTML = fotos.map((u,i)=>`
       <div class="thumb-sm ${i===0?'cover':''}">
         <img src="${esc(u)}" alt="">
-        <button type="button" class="rm" data-i="${i}" aria-label="Remover">âœ•</button>
+        <button type="button" class="rm" data-i="${i}" aria-label="Remover">✕</button>
       </div>`).join('');
     document.querySelectorAll('#thumbs .rm').forEach(b=>b.addEventListener('click',()=>{ fotos.splice(+b.dataset.i,1); renderThumbs(); }));
   }
 
-  /* ficha tÃ©cnica */
+  /* ficha técnica */
   function fichaRow(lbl,val){
     const d=document.createElement('div'); d.className='ficha-row';
-    d.innerHTML=`<input type="text" placeholder="RÃ³tulo (ex: Material)" value="${esc(lbl)}">
+    d.innerHTML=`<input type="text" placeholder="Rótulo (ex: Material)" value="${esc(lbl)}">
       <input type="text" placeholder="Valor (ex: Carvalho)" value="${esc(val)}">
       <button type="button" class="rm" aria-label="Remover"><svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>`;
     d.querySelector('.rm').addEventListener('click',()=>d.remove());
@@ -451,9 +451,9 @@ if (configOk) {
   $('modal-save').addEventListener('click', async ()=>{
     const titulo=$('f-titulo').value.trim();
     const categoria=$('f-categoria').value;
-    if(!titulo){ toast('Falta o tÃ­tulo.'); return; }
+    if(!titulo){ toast('Falta o título.'); return; }
     if(!fotos.length){ toast('Adiciona pelo menos uma foto.'); return; }
-    if(!$('f-desc').value.trim()){ toast('Falta a descriÃ§Ã£o.'); return; }
+    if(!$('f-desc').value.trim()){ toast('Falta a descrição.'); return; }
 
     const ficha=[...document.querySelectorAll('#ficha-list .ficha-row')].map(r=>{
       const ins=r.querySelectorAll('input');
@@ -465,7 +465,7 @@ if (configOk) {
       descricao:$('f-desc').value.trim(),
       fotos, ficha, visivel:$('f-visivel').checked };
 
-    $('modal-save').textContent='A guardarâ€¦';
+    $('modal-save').textContent='A guardar…';
     let error;
     if(editId){
       ({ error } = await db.from('projetos').update(payload).eq('id',editId));
@@ -476,13 +476,13 @@ if (configOk) {
     }
     $('modal-save').innerHTML='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Guardar projeto';
     if(error){ toast('Erro ao guardar: '+error.message); return; }
-    closeModal(); toast(editId?'Projeto atualizado âœ“':'Projeto criado âœ“'); loadProjetos();
+    closeModal(); toast(editId?'Projeto atualizado ✓':'Projeto criado ✓'); loadProjetos();
   });
 
   /* apagar */
   async function removeProjeto(id){
     const p=projetos.find(x=>x.id===id);
-    if(!confirm('Apagar o projeto "'+(p?p.titulo:'')+'"? Esta aÃ§Ã£o nÃ£o pode ser revertida.')) return;
+    if(!confirm('Apagar o projeto "'+(p?p.titulo:'')+'"? Esta ação não pode ser revertida.')) return;
     const { error } = await db.from('projetos').delete().eq('id',id);
     if(error){ toast('Erro ao apagar: '+error.message); return; }
     toast('Projeto apagado.'); loadProjetos();
@@ -493,4 +493,3 @@ if (configOk) {
 </script>
 </body>
 </html>
-

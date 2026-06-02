@@ -1203,13 +1203,14 @@ document.addEventListener('keydown', e => {
 
 // ======== WHATSAPP ========
 const waFab = document.getElementById('wa-fab');
-const toast = document.getElementById('toast');
-let toastTimer;
+// Número de WhatsApp (indicativo do país + número, sem espaços nem '+')
+const WHATSAPP_NUMERO = '351910444449';
 waFab.addEventListener('click', () => {
-  document.getElementById('toast-msg').textContent = t('toast_soon');
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  const msg = (typeof getLang === 'function' && getLang() === 'en')
+    ? 'Hello! I found your website and would like more information about Madeira Rústica®.'
+    : 'Olá! Encontrei o vosso site e gostaria de mais informações sobre a Madeira Rústica®.';
+  const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank', 'noopener');
 });
 // ======== CARREGAR PROJETOS DA PLATAFORMA (SUPABASE) ========
 let _rawProjects = [];

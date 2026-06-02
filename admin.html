@@ -127,7 +127,7 @@
   .thumb-sm img{width:100%; height:100%; object-fit:cover;}
   .thumb-sm .rm{position:absolute; top:2px; right:2px; width:18px; height:18px; border-radius:50%; background:rgba(8,5,2,0.78); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; line-height:1;}
   .thumb-sm.cover::after{content:'Capa'; position:absolute; bottom:0; left:0; right:0; background:rgba(176,127,79,0.92); color:#fff; font-size:9px; text-align:center; padding:1px; letter-spacing:.05em;}
-  .ficha-row{display:grid; grid-template-columns:1fr 1fr 36px; gap:8px; margin-bottom:8px;}
+  .ficha-row{display:grid; grid-template-columns:1fr 1fr 1fr 1fr 36px; gap:8px; margin-bottom:8px; align-items:center;}
   .ficha-row .rm{border:1px solid var(--line-2); border-radius:var(--radius-sm); color:var(--danger); display:flex; align-items:center; justify-content:center;}
   .ficha-row .rm:hover{background:rgba(217,138,106,0.12);}
   .add-line{font-size:13px; color:var(--accent); display:inline-flex; align-items:center; gap:6px; padding:6px 0; margin-top:2px;}
@@ -146,7 +146,7 @@
 
   @media(max-width:560px){
     .row2{grid-template-columns:1fr;}
-    .ficha-row{grid-template-columns:1fr 1fr 34px;}
+    .ficha-row{grid-template-columns:1fr 1fr; gap:6px;} .ficha-row .rm{grid-column:1 / -1; height:32px;}
   }
 </style>
 </head>
@@ -222,6 +222,8 @@
         </div>
       </div>
 
+      <div class="field"><label>🇬🇧 Título em inglês <span style="font-weight:400;opacity:.6;">(opcional — se vazio, o site usa o português)</span></label><input type="text" id="f-titulo-en" placeholder="Ex: Custom bedroom wardrobe" /></div>
+
       <div class="field"><label>Localização</label><input type="text" id="f-local" placeholder="Ex: Porto · 4,2m de frente" /></div>
 
       <div class="field">
@@ -255,6 +257,8 @@
       </div>
 
       <div class="field"><label>Breve descrição *</label><textarea id="f-desc" placeholder="Descreve o projeto, as madeiras usadas, o que o torna único…"></textarea></div>
+
+      <div class="field"><label>🇬🇧 Descrição em inglês <span style="font-weight:400;opacity:.6;">(opcional — se vazia, o site usa o português)</span></label><textarea id="f-desc-en" placeholder="Describe the project, the woods used, what makes it unique…"></textarea></div>
 
       <div class="field" style="margin-bottom:6px;">
         <label>Ficha técnica (opcional)</label>
@@ -373,13 +377,15 @@ if (configOk) {
     const p = id ? projetos.find(x=>x.id===id) : null;
     $('modal-title').lastChild.textContent = p ? ' Editar projeto' : ' Novo projeto';
     $('f-titulo').value = p?p.titulo:'';
+    $('f-titulo-en').value = p?(p.titulo_en||''):'';
     $('f-categoria').value = p?p.categoria:'Quarto';
     $('f-local').value = p?(p.localizacao||''):'';
     $('f-desc').value = p?(p.descricao||''):'';
+    $('f-desc-en').value = p?(p.descricao_en||''):'';
     $('f-visivel').checked = p?!!p.visivel:true;
     fotos = p&&Array.isArray(p.fotos) ? [...p.fotos] : [];
     renderThumbs();
-    renderFicha(p&&Array.isArray(p.ficha) ? p.ficha : []);
+    renderFicha(p&&Array.isArray(p.ficha) ? p.ficha : [], p&&Array.isArray(p.ficha_en) ? p.ficha_en : []);
     $('f-foto-url').value=''; $('upload-hint').textContent='';
     setMode('url');
     $('overlay').classList.add('open');
@@ -436,16 +442,22 @@ if (configOk) {
   }
 
   /* ficha técnica */
-  function fichaRow(lbl,val){
+  function fichaRow(lbl,val,lblEn,valEn){
     const d=document.createElement('div'); d.className='ficha-row';
-    d.innerHTML=`<input type="text" placeholder="Rótulo (ex: Material)" value="${esc(lbl)}">
-      <input type="text" placeholder="Valor (ex: Carvalho)" value="${esc(val)}">
+    d.innerHTML=`<input type="text" placeholder="Rótulo PT (ex: Material)" value="${esc(lbl)}">
+      <input type="text" placeholder="Valor PT (ex: Carvalho)" value="${esc(val)}">
+      <input type="text" placeholder="🇬🇧 Label EN (ex: Material)" value="${esc(lblEn||'')}">
+      <input type="text" placeholder="🇬🇧 Value EN (ex: Oak)" value="${esc(valEn||'')}">
       <button type="button" class="rm" aria-label="Remover"><svg class="icon" style="width:15px;height:15px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>`;
     d.querySelector('.rm').addEventListener('click',()=>d.remove());
     return d;
   }
-  function renderFicha(arr){ const l=$('ficha-list'); l.innerHTML=''; (arr||[]).forEach(m=>l.appendChild(fichaRow(m.lbl,m.val))); }
-  $('ficha-add').addEventListener('click',()=>$('ficha-list').appendChild(fichaRow('','')));
+  function renderFicha(arr, arrEn){
+    const l=$('ficha-list'); l.innerHTML='';
+    const en = Array.isArray(arrEn) ? arrEn : [];
+    (arr||[]).forEach((m,i)=>l.appendChild(fichaRow(m.lbl, m.val, (en[i]&&en[i].lbl)||'', (en[i]&&en[i].val)||'')));
+  }
+  $('ficha-add').addEventListener('click',()=>$('ficha-list').appendChild(fichaRow('','','','')));
 
   /* guardar */
   $('modal-save').addEventListener('click', async ()=>{
@@ -455,15 +467,21 @@ if (configOk) {
     if(!fotos.length){ toast('Adiciona pelo menos uma foto.'); return; }
     if(!$('f-desc').value.trim()){ toast('Falta a descrição.'); return; }
 
-    const ficha=[...document.querySelectorAll('#ficha-list .ficha-row')].map(r=>{
+    const fichaRows=[...document.querySelectorAll('#ficha-list .ficha-row')].map(r=>{
       const ins=r.querySelectorAll('input');
-      return { lbl:ins[0].value.trim(), val:ins[1].value.trim() };
-    }).filter(m=>m.lbl||m.val);
+      return { lbl:ins[0].value.trim(), val:ins[1].value.trim(),
+               lbl_en:ins[2].value.trim(), val_en:ins[3].value.trim() };
+    });
+    const ficha    = fichaRows.filter(m=>m.lbl||m.val).map(m=>({lbl:m.lbl, val:m.val}));
+    const ficha_en = fichaRows.map(m=>({ lbl:(m.lbl_en||m.lbl), val:(m.val_en||m.val) }))
+                              .filter((m,i)=> fichaRows[i].lbl_en || fichaRows[i].val_en );
 
     const payload={ titulo, categoria,
+      titulo_en:$('f-titulo-en').value.trim() || null,
       localizacao:$('f-local').value.trim(),
       descricao:$('f-desc').value.trim(),
-      fotos, ficha, visivel:$('f-visivel').checked };
+      descricao_en:$('f-desc-en').value.trim() || null,
+      fotos, ficha, ficha_en, visivel:$('f-visivel').checked };
 
     $('modal-save').textContent='A guardar…';
     let error;

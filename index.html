@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" id="html-root">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -198,6 +198,25 @@
   .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px; background: var(--c-brown); transition: width .35s var(--ease); }
   .nav-links a:hover { color: var(--c-brown); }
   .nav-links a:hover::after { width: 100%; }
+  .lang-toggle {
+    position: relative; display: inline-flex; align-items: center;
+    background: var(--c-cream); border: 1px solid var(--c-line);
+    border-radius: 999px; padding: 3px; cursor: pointer;
+    font-family: inherit; line-height: 1;
+  }
+  .lang-toggle .lang-opt {
+    position: relative; z-index: 1;
+    padding: 5px 13px; border-radius: 999px;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--c-muted); transition: color .3s var(--ease);
+  }
+  .lang-toggle .lang-opt.active { color: var(--c-cream); }
+  .lang-toggle .lang-pill {
+    position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px);
+    background: var(--c-deep); border-radius: 999px;
+    transition: transform .3s var(--ease);
+  }
+  .lang-toggle[data-lang="en"] .lang-pill { transform: translateX(100%); }
   .hamburger { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; transition: background .25s var(--ease); }
   .hamburger:hover { background: var(--c-cream); }
   .hamburger span { display: block; width: 22px; height: 2px; background: var(--c-deep); position: relative; transition: all .35s var(--ease); }
@@ -527,6 +546,8 @@
     .nav-links.open { transform: translateY(0); opacity: 1; }
     .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--c-line); font-size: 1rem; }
     .nav-links li:last-child a { border-bottom: none; }
+    .nav-links .lang-toggle { align-self: flex-start; margin-top: 16px; }
+    .nav-links .lang-toggle .lang-opt { padding: 8px 18px; font-size: 0.9rem; }
     .hamburger { display: inline-flex; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .why-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -568,16 +589,16 @@
   <div class="login-box">
     <img class="login-logo" src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira rústica®" />
     <h2>Madeira rústica®</h2>
-    <p>Acesso reservado. Introduza as suas credenciais.</p>
+    <p data-i18n="login_sub">Acesso reservado. Introduza as suas credenciais.</p>
     <div class="login-field">
-      <label for="login-user">Utilizador</label>
-      <input type="text" id="login-user" placeholder="utilizador" autocomplete="username" />
+      <label for="login-user" data-i18n="login_user">Utilizador</label>
+      <input type="text" id="login-user" placeholder="utilizador" data-i18n-ph="login_user_ph" autocomplete="username" />
     </div>
     <div class="login-field">
-      <label for="login-pass">Password</label>
+      <label for="login-pass" data-i18n="login_pass">Password</label>
       <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
     </div>
-    <button class="login-btn" id="login-btn">Entrar</button>
+    <button class="login-btn" id="login-btn" data-i18n="login_btn">Entrar</button>
     <div class="login-error" id="login-error"></div>
   </div>
 </div>
@@ -590,11 +611,16 @@
       <span class="brand-name">Madeira rústica®</span>
     </a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#porque">Porquê nós</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#sobre" data-i18n="nav_about">Sobre</a></li>
+      <li><a href="#servicos" data-i18n="nav_services">Serviços</a></li>
+      <li><a href="#projetos" data-i18n="nav_projects">Projetos</a></li>
+      <li><a href="#porque" data-i18n="nav_why">Porquê nós</a></li>
+      <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
+      <li><button id="lang-toggle" class="lang-toggle" data-lang="pt" aria-label="Mudar idioma / Switch language">
+        <span class="lang-pill"></span>
+        <span class="lang-opt" data-set="pt">pt</span>
+        <span class="lang-opt" data-set="en">en</span>
+      </button></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span>
@@ -606,25 +632,25 @@
 <section class="hero" id="hero">
   <div class="container hero-grid">
     <div class="hero-text">
-      <span class="eyebrow hero-in-1">Foco na vertente rústica®, onde cada projecto é único em si mesmo</span>
-      <h1 class="hero-in-2">Móveis feitos à <span class="accent">mão,</span><br/>pensados <span class="accent">à medida</span>.</h1>
-      <p class="lead hero-in-3">Na Madeira rústica® apostamos num trabalho totalmente personalizado, apostando na técnica de execução tradicional, por forma a construir com um cariz claramente rústico em cada detalhe.</p>
+      <span class="eyebrow hero-in-1"><span class="dot"></span><span data-i18n="hero_eyebrow">Foco na vertente rústica®, onde cada projecto é único em si mesmo</span></span>
+      <h1 class="hero-in-2" data-i18n-html="hero_h1">Móveis feitos à <span class="accent">mão,</span><br/>pensados <span class="accent">à medida</span>.</h1>
+      <p class="lead hero-in-3" data-i18n="hero_lead">Na Madeira rústica® apostamos num trabalho totalmente personalizado, apostando na técnica de execução tradicional, por forma a construir com um cariz claramente rústico em cada detalhe.</p>
       <div class="hero-actions hero-in-4">
-        <a href="#projetos" class="btn btn-primary">Ver Projetos <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#projetos" class="btn btn-primary"><span data-i18n="hero_cta">Ver Projetos</span> <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="hero-stats hero-in-4">
-        <div class="stat"><div class="num">À medida</div><div class="lbl">Cada projecto único</div></div>
-        <div class="stat"><div class="num">Madeira nobre</div><div class="lbl">Materiais selecionados</div></div>
-        <div class="stat"><div class="num">Feito à mão</div><div class="lbl">Foco no detalhe</div></div>
+        <div class="stat"><div class="num" data-i18n="stat1_num">À medida</div><div class="lbl" data-i18n="stat1_lbl">Cada projecto único</div></div>
+        <div class="stat"><div class="num" data-i18n="stat2_num">Madeira nobre</div><div class="lbl" data-i18n="stat2_lbl">Materiais selecionados</div></div>
+        <div class="stat"><div class="num" data-i18n="stat3_num">Feito à mão</div><div class="lbl" data-i18n="stat3_lbl">Foco no detalhe</div></div>
       </div>
     </div>
     <div class="hero-art-wrap hero-in-5" style="position:relative;">
-      <div class="hero-floating f1"><span class="badge-dot"></span>Carvalho maciço</div>
-      <div class="hero-floating f2"><span class="badge-dot"></span>Acabamento natural</div>
+      <div class="hero-floating f1"><span class="badge-dot"></span><span data-i18n="float1">Carvalho maciço</span></div>
+      <div class="hero-floating f2"><span class="badge-dot"></span><span data-i18n="float2">Acabamento natural</span></div>
       <div class="hero-art" aria-hidden="true">
         <div class="hero-badge">
           <div class="icn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
-          <div><h4>Oficina própria em Portugal</h4><p>Cada peça nasce nas nossas mãos.</p></div>
+          <div><h4 data-i18n="badge_h4">Oficina própria em Portugal</h4><p data-i18n="badge_p">Cada peça nasce nas nossas mãos.</p></div>
         </div>
       </div>
     </div>
@@ -635,28 +661,28 @@
 <section class="about" id="sobre">
   <div class="container about-grid">
     <div class="about-text reveal">
-      <span class="eyebrow"><span class="dot"></span>Tradição</span>
-      <h2>Somos uma marcenaria especializada em trabalhos rústicos, construídos à medida.</h2>
-      <p>O resultado são peças únicas, duradouras e construídas com alma, em total contraponto com produção em série. Não existem no mercado.</p>
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="about_eyebrow">Tradição</span></span>
+      <h2 data-i18n="about_h2">Somos uma marcenaria especializada em trabalhos rústicos, construídos à medida.</h2>
+      <p data-i18n="about_p">O resultado são peças únicas, duradouras e construídas com alma, em total contraponto com produção em série. Não existem no mercado.</p>
       <div class="values">
         <div class="value">
           <div class="v-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3 7.2 16.9l.9-5.4L4.2 7.7l5.4-.8L12 2z"/></svg></div>
-          <h4>Artesanal</h4><p>Cada peça é construída à mão na oficina da Madeira Rústica®.</p>
+          <h4 data-i18n="val1_h">Artesanal</h4><p data-i18n="val1_p">Cada peça é construída à mão na oficina da Madeira Rústica®.</p>
         </div>
         <div class="value">
           <div class="v-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-          <h4>Qualidade</h4><p>Madeiras nobres e acabamentos naturais.</p>
+          <h4 data-i18n="val2_h">Qualidade</h4><p data-i18n="val2_p">Madeiras nobres e acabamentos naturais.</p>
         </div>
         <div class="value">
           <div class="v-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg></div>
-          <h4>Personalização</h4><p>Desenhado à medida do seu espaço.</p>
+          <h4 data-i18n="val3_h">Personalização</h4><p data-i18n="val3_p">Desenhado à medida do seu espaço.</p>
         </div>
       </div>
     </div>
     <div class="about-art reveal delay-2" aria-hidden="true">
       <div class="about-quote">
-        <p>"A boa madeira pede tempo. Pede mãos que escutam o veio antes de cortar."</p>
-        <span>— Equipa Madeira rústica®</span>
+        <p data-i18n="quote">"A boa madeira pede tempo. Pede mãos que escutam o veio antes de cortar."</p>
+        <span data-i18n="quote_by">— Equipa Madeira rústica®</span>
       </div>
     </div>
   </div>
@@ -666,34 +692,34 @@
 <section id="servicos">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>O que fazemos</span>
-      <h2>Serviços de marcenaria à medida</h2>
-      <p>Desenhamos, construímos e instalamos. Do primeiro esboço ao último acabamento, o trabalho é todo da madeira rústica®.</p>
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="serv_eyebrow">O que fazemos</span></span>
+      <h2 data-i18n="serv_h2">Serviços de marcenaria à medida</h2>
+      <p data-i18n="serv_p">Desenhamos, construímos e instalamos. Do primeiro esboço ao último acabamento, o trabalho é todo da madeira rústica®.</p>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="s-icn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V8a2 2 0 012-2h12a2 2 0 012 2v13M9 21v-7h6v7M8 11h8"/></svg></div>
-        <h3>Móveis de Interior</h3>
-        <p>Estantes e móveis à medida, com as madeiras mais indicadas para cada projecto.</p>
-        <button class="more" data-service="interior">Saber mais →</button>
+        <h3 data-i18n="sc1_h">Móveis de Interior</h3>
+        <p data-i18n="sc1_p">Estantes e móveis à medida, com as madeiras mais indicadas para cada projecto.</p>
+        <button class="more" data-service="interior" data-i18n="more">Saber mais →</button>
       </div>
       <div class="service-card reveal delay-1">
         <div class="s-icn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M5 8l2.3 2.3M19 8l-2.3 2.3M4 14h16M6 20h12M3 14l3 6M21 14l-3 6"/></svg></div>
-        <h3>Móveis de Exterior</h3>
-        <p>Mesas e cadeiras de jardim, e arrumos para o exterior.</p>
-        <button class="more" data-service="exterior">Saber mais →</button>
+        <h3 data-i18n="sc2_h">Móveis de Exterior</h3>
+        <p data-i18n="sc2_p">Mesas e cadeiras de jardim, e arrumos para o exterior.</p>
+        <button class="more" data-service="exterior" data-i18n="more">Saber mais →</button>
       </div>
       <div class="service-card reveal delay-2">
         <div class="s-icn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div>
-        <h3>Arrumos Personalizados</h3>
-        <p>Roupeiros, arrumos por medida, e bancos com arrumação interior.</p>
-        <button class="more" data-service="arrumos">Saber mais →</button>
+        <h3 data-i18n="sc3_h">Arrumos Personalizados</h3>
+        <p data-i18n="sc3_p">Roupeiros, arrumos por medida, e bancos com arrumação interior.</p>
+        <button class="more" data-service="arrumos" data-i18n="more">Saber mais →</button>
       </div>
       <div class="service-card reveal delay-3">
         <div class="s-icn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 3-3 3 3 3-3 3 3 3-3M3 13l3 3 3-3 3 3 3-3 3 3 3-3M3 20h18"/></svg></div>
-        <h3>Mobiliário por Medida</h3>
-        <p>Projecto desde o esboço até à instalação, ajustado ao seu espaço.</p>
-        <button class="more" data-service="medida">Saber mais →</button>
+        <h3 data-i18n="sc4_h">Mobiliário por Medida</h3>
+        <p data-i18n="sc4_p">Projecto desde o esboço até à instalação, ajustado ao seu espaço.</p>
+        <button class="more" data-service="medida" data-i18n="more">Saber mais →</button>
       </div>
     </div>
   </div>
@@ -703,9 +729,9 @@
 <section class="gallery" id="projetos">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Projectos Recentes</span>
-      <h2>Cada projecto, uma história em madeira</h2>
-      <p>Uma seleção dos projectos pensados, planeados, construídos e executados com alma, na sua plenitude, na oficina da Madeira rústica®.</p>
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="proj_eyebrow">Projectos Recentes</span></span>
+      <h2 data-i18n="proj_h2">Cada projecto, uma história em madeira</h2>
+      <p data-i18n="proj_p">Uma seleção dos projectos pensados, planeados, construídos e executados com alma, na sua plenitude, na oficina da Madeira rústica®.</p>
     </div>
 
     <div class="gallery-grid" id="gallery-grid"></div>
@@ -725,48 +751,52 @@
 <section id="porque">
   <div class="container">
     <div class="section-head reveal" style="margin-bottom:44px;">
-      <h2>ADN da Madeira rústica®</h2>
+      <h2 data-i18n="adn_h2">ADN da Madeira rústica®</h2>
     </div>
     <div class="adn-box reveal">
-        <p>O Foco da Madeira rústica® centra-se na construção, de raíz, de peças novas, em madeira. 
+        <p data-i18n="adn1">O Foco da Madeira rústica® centra-se na construção, de raíz, de peças novas, em madeira. 
 Orgulhamo-nos de construír peças únicas, com uma alma própria. 
 São peças pensadas, concebidas, planeadas e executadas com um pensar único e exclusivo em cada projecto. 
 Não existem no mercado, pela sua especificidade única e própria.</p>
-        <p>Todos os pormenores de cada projecto são pensados, previamente, de forma exaustiva na fase de planeamento e execução geral.
+        <p data-i18n="adn2">Todos os pormenores de cada projecto são pensados, previamente, de forma exaustiva na fase de planeamento e execução geral.
 Existe um tremendo planeamento criterioso em cada fase do projecto: desde a fase da execução geral, até ao mais pequeno detalhe, em cada pormenor, de cada fase da execução. 
 Somos rigorosíssimos nos pormenores, em cada detalhe, em cada fase do processo de construção.
 Existe uma rigorosa disciplina em cada uma das etapas da execução.</p>
-        <p>Cada etapa, constitui um processo por si só. A soma de todas as etapas, culmina na satisfação plena de um projecto concluído, com tremendo brio, e um imensurável sentimento de Missão Cumprida !
+        <p data-i18n="adn3">Cada etapa, constitui um processo por si só. A soma de todas as etapas, culmina na satisfação plena de um projecto concluído, com tremendo brio, e um imensurável sentimento de Missão Cumprida !
 Na conclusão de cada trabalho, 99,99% não chega. Apenas aceitamos 100% no Controlo de Qualidade, que nós próprios efectuamos, por forma a considerarmos que um trabalho, está, de facto, concluído, de acordo com os nossos rigorosos padrões de exigência.</p>
-        <p>Este rigor e exigência definido e imposto pela própria Madeira rústica®, orgulhamo-nos o facto de que todos os nossos trabalhos têm uma alma, uma existência, e uma identidade muito própria e única. 
+        <p data-i18n="adn4">Este rigor e exigência definido e imposto pela própria Madeira rústica®, orgulhamo-nos o facto de que todos os nossos trabalhos têm uma alma, uma existência, e uma identidade muito própria e única. 
 Em última análise, porque trabalhamos para construir e criar de raíz, peças únicas e sem igual no mercado, com uma identidade muito própria e muito bem definida, que, por sua vez, nos confere a confiança inequívoca, de sabermos que a qualidade do nosso trabalho irá perdurar no passar do tempo, para as próximos gerações vindouras.</p>
-        <p class="adn-sign">Porque somos, orgulhosamente, Madeira rústica®.</p>
+        <p class="adn-sign" data-i18n="adn_sign">Porque somos, orgulhosamente, Madeira rústica®.</p>
     </div>
     <div class="section-divider"></div>
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Porquê escolher-nos</span>
-      <h2>Quatro motivos que fazem a diferença</h2>
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="why_eyebrow">Porquê escolher-nos</span></span>
+      <h2 data-i18n="why_h2">Quatro motivos que fazem a diferença</h2>
     </div>
     <div class="why-grid">
       <div class="why-card reveal">
+        <span class="num">01</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.8 9.2 9 10 5.2-.8 9-5 9-10V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
-        <h3>Madeiras selecionadas</h3>
-        <p>Trabalhamos apenas com madeiras certificadas, e damos o tratamento adequado em cada situação.</p>
+        <h3 data-i18n="wc1_h">Madeiras selecionadas</h3>
+        <p data-i18n="wc1_p">Trabalhamos apenas com madeiras certificadas, e damos o tratamento adequado em cada situação.</p>
       </div>
       <div class="why-card reveal delay-1">
+        <span class="num">02</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>
-        <h3>Projecto à medida</h3>
-        <p>Visitamos e analisamos o espaço, aconselhamos sobre possíveis soluções, e ajustamos cada detalhe às especificidades do local.</p>
+        <h3 data-i18n="wc2_h">Projecto à medida</h3>
+        <p data-i18n="wc2_p">Visitamos e analisamos o espaço, aconselhamos sobre possíveis soluções, e ajustamos cada detalhe às especificidades do local.</p>
       </div>
       <div class="why-card reveal delay-2">
+        <span class="num">03</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <h3>Prazos cumpridos</h3>
-        <p>Definimos prazos realistas e respeitamo-los. Comunicação clara em cada fase do projecto.</p>
+        <h3 data-i18n="wc3_h">Prazos cumpridos</h3>
+        <p data-i18n="wc3_p">Definimos prazos realistas e respeitamo-los. Comunicação clara em cada fase do projecto.</p>
       </div>
       <div class="why-card reveal delay-3">
+        <span class="num">04</span>
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        <h3>Acabamentos Rústicos</h3>
-        <p>Trabalho árduo de bastidores: todos os trabalhos são construídos na oficina da Madeira rústica®, e têm um cariz e acabamento claramente rústico.</p>
+        <h3 data-i18n="wc4_h">Acabamentos Rústicos</h3>
+        <p data-i18n="wc4_p">Trabalho árduo de bastidores: todos os trabalhos são construídos na oficina da Madeira rústica®, e têm um cariz e acabamento claramente rústico.</p>
       </div>
     </div>
     
@@ -777,13 +807,13 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
 <section class="contact" id="contacto">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Vamos conversar</span>
-      <h2>Conte-nos a sua ideia</h2>
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="contact_eyebrow">Vamos conversar</span></span>
+      <h2 data-i18n="contact_h2">Conte-nos a sua ideia</h2>
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <h3>Falar connosco</h3>
-        <p class="intro">Estamos disponíveis para visitar o seu espaço e desenhar a peça ideal — em interior ou exterior.</p>
+        <h3 data-i18n="contact_h3">Falar connosco</h3>
+        <p class="intro" data-i18n="contact_intro">Estamos disponíveis para visitar o seu espaço e desenhar a peça ideal — em interior ou exterior.</p>
         <ul class="contact-list">
           <li>
             <div class="ci-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.94.34 1.85.62 2.74a2 2 0 01-.45 2.11L8 9.91a16 16 0 006 6l1.34-1.34a2 2 0 012.11-.45c.89.28 1.8.49 2.74.62A2 2 0 0122 16.92z"/></svg></div>
@@ -795,17 +825,17 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
           </li>
           <li>
             <div class="ci-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
-            <div><div class="val">Seg – Sex · 09H00 – 18H00</div></div>
+            <div><div class="val" data-i18n="hours">Seg – Sex · 09H00 – 18H00</div></div>
           </li>
         </ul>
       </div>
       <form class="contact-form reveal delay-1" id="contact-form" novalidate>
         <div class="form-row">
-          <div class="field"><label for="name">Nome</label><input type="text" id="name" name="name" placeholder="O seu nome" required /></div>
-          <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="email@exemplo.pt" required /></div>
+          <div class="field"><label for="name" data-i18n="f_name">Nome</label><input type="text" id="name" name="name" placeholder="O seu nome" data-i18n-ph="f_name_ph" required /></div>
+          <div class="field"><label for="email" data-i18n="f_email">Email</label><input type="email" id="email" name="email" placeholder="email@exemplo.pt" data-i18n-ph="f_email_ph" required /></div>
         </div>
-        <div class="field"><label for="message">Mensagem</label><textarea id="message" name="message" placeholder="Descreva a peça que tem em mente…" required></textarea></div>
-        <button type="submit" class="btn form-submit">Enviar Mensagem <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <div class="field"><label for="message" data-i18n="f_msg">Mensagem</label><textarea id="message" name="message" placeholder="Descreva a peça que tem em mente…" data-i18n-ph="f_msg_ph" required></textarea></div>
+        <button type="submit" class="btn form-submit"><span data-i18n="f_submit">Enviar Mensagem</span> <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         <div class="form-status" id="form-status" aria-live="polite"></div>
       </form>
     </div>
@@ -821,19 +851,19 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
           <img src="https://customer-assets.emergentagent.com/job_a7ed97bc-4df4-497d-88dd-a008d07d9894/artifacts/k9u6kzi8_Logo.png" alt="Madeira rústica®" />
           <span>Madeira rústica®</span>
         </div>
-        <p>Marcenaria especializada em trabalhos rústicos, em mobiliário por medida para interiores e exteriores. Cada peça, uma história.</p>
+        <p data-i18n="foot_about">Marcenaria especializada em trabalhos rústicos, em mobiliário por medida para interiores e exteriores. Cada peça, uma história.</p>
       </div>
       <div class="footer-col">
-        <h5>Navegação</h5>
+        <h5 data-i18n="foot_nav">Navegação</h5>
         <ul>
-          <li><a href="#sobre">Sobre nós</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#porque">Porquê nós</a></li>
+          <li><a href="#sobre" data-i18n="foot_about_link">Sobre nós</a></li>
+          <li><a href="#servicos" data-i18n="nav_services">Serviços</a></li>
+          <li><a href="#projetos" data-i18n="nav_projects">Projetos</a></li>
+          <li><a href="#porque" data-i18n="nav_why">Porquê nós</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Contactos</h5>
+        <h5 data-i18n="foot_contacts">Contactos</h5>
         <ul>
           <li><a href="tel:+351910444449">910 444 449</a></li>
           <li><a href="mailto:info@madeirarustica.pt">info@madeirarustica.pt</a></li>
@@ -841,8 +871,8 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
       </div>
     </div>
     <div class="copyright">
-      <span>® <span id="year"></span> Madeira rústica®. Todos os direitos reservados.</span>
-      <span class="made">Construído à mão, com madeira e atenção.</span>
+      <span>® <span id="year"></span> Madeira rústica®. <span data-i18n="foot_rights">Todos os direitos reservados.</span></span>
+      <span class="made" data-i18n="foot_made">Construído à mão, com madeira e atenção.</span>
     </div>
   </div>
 </footer>
@@ -856,7 +886,7 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
     <div class="modal-icon" id="modal-icon"></div>
     <h3 id="modal-title">—</h3>
     <p class="modal-lead" id="modal-lead">—</p>
-    <h4>O que está incluído</h4>
+    <h4 data-i18n="modal_incl">O que está incluído</h4>
     <ul id="modal-list"></ul>
   </div>
 </div>
@@ -878,7 +908,7 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
       <h3 id="project-title">—</h3>
       <div class="project-meta" id="project-meta"></div>
       <p class="desc" id="project-desc">—</p>
-      <a href="#contacto" class="btn btn-primary" id="project-cta">Pedir um projecto semelhante <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#contacto" class="btn btn-primary" id="project-cta"><span data-i18n="proj_cta">Pedir um projecto semelhante</span> <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </div>
@@ -886,12 +916,12 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
 <!-- ============== WHATSAPP ============== -->
 <button class="wa-fab" id="wa-fab" aria-label="WhatsApp">
   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
-  <span class="wa-tooltip">Fale connosco no WhatsApp</span>
+  <span class="wa-tooltip" data-i18n="wa_tip">Fale connosco no WhatsApp</span>
 </button>
 
 <div class="toast" id="toast" role="status">
   <span class="toast-dot"></span>
-  <span id="toast-msg">Em breve disponível</span>
+  <span id="toast-msg" data-i18n="toast_soon">Em breve disponível</span>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -908,7 +938,7 @@ const doLogin = () => {
     loginScreen.classList.add('hidden');
     document.body.style.overflow = '';
   } else {
-    loginError.textContent = 'Utilizador ou password incorretos.';
+    loginError.textContent = t('login_err');
     loginPass.value = '';
     loginPass.focus();
   }
@@ -966,22 +996,20 @@ initSlideshows();
 
 // ======== VER MAIS ========
 const btnVerMais = document.getElementById('btn-ver-mais');
-const hiddenProjects = document.querySelectorAll('.gallery-item.hidden-project');
 let expanded = false;
-btnVerMais.addEventListener('click', () => {
+function verMaisLabel(){
+  if (typeof t === 'function') return expanded ? t('ver_menos') : t('ver_mais');
+  return expanded ? 'Ver menos' : 'Ver mais projectos';
+}
+function refreshVerMais(){ if (btnVerMais && btnVerMais.childNodes[0]) btnVerMais.childNodes[0].textContent = ' ' + verMaisLabel() + ' '; }
+if (btnVerMais) btnVerMais.addEventListener('click', () => {
   expanded = !expanded;
   document.querySelectorAll('.gallery-item.hidden-project').forEach(p => {
-    if (expanded) {
-      p.classList.add('visible');
-      p.classList.add('in'); // trigger reveal
-    } else {
-      p.classList.remove('visible');
-      p.classList.remove('in');
-    }
+    if (expanded) { p.classList.add('visible'); p.classList.add('in'); }
+    else { p.classList.remove('visible'); p.classList.remove('in'); }
   });
   btnVerMais.classList.toggle('open', expanded);
-  btnVerMais.querySelector('span') && null;
-  btnVerMais.childNodes[0].textContent = expanded ? 'Ver menos ' : 'Ver mais projectos ';
+  refreshVerMais();
 });
 
 // ======== FORM ========
@@ -1012,36 +1040,44 @@ const services = {
     title: 'Móveis de Interior',
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V8a2 2 0 012-2h12a2 2 0 012 2v13M9 21v-7h6v7M8 11h8"/></svg>',
     lead: 'Peças que dão personalidade e função a cada divisão da casa, desenhadas e construídas em madeira maciça, ajustadas ao seu espaço.',
-    items: ['Estantes e móveis à medida', 'Madeiras: desde as madeiras mais nobres às soluções mais económicas, consoante a natureza e o propósito de cada projecto, mas sempre com aposta e foco na durabilidade e na resistência']
+    items: ['Estantes e móveis à medida', 'Madeiras: desde as madeiras mais nobres às soluções mais económicas, consoante a natureza e o propósito de cada projecto, mas sempre com aposta e foco na durabilidade e na resistência'],
+    i18n: { en: { title: 'Interior Furniture', lead: 'Pieces that bring character and function to every room, designed and built in solid wood, tailored to your space.', items: ['Custom shelving and furniture', 'Woods: from the finest hardwoods to more economical solutions, according to the nature and purpose of each project, always focused on durability and resistance'] } }
   },
   exterior: {
     title: 'Móveis de Exterior',
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M5 8l2.3 2.3M19 8l-2.3 2.3M4 14h16M6 20h12M3 14l3 6M21 14l-3 6"/></svg>',
     lead: 'Mobiliário pensado para resistir ao sol, à chuva e ao tempo, com madeiras tratadas e acabamentos protetores.',
-    items: ['Mesas, bancos e cadeiras de jardim', 'Floreiras, vedações e portões em madeira']
+    items: ['Mesas, bancos e cadeiras de jardim', 'Floreiras, vedações e portões em madeira'],
+    i18n: { en: { title: 'Outdoor Furniture', lead: 'Furniture built to withstand sun, rain and time, with treated woods and protective finishes.', items: ['Garden tables, benches and chairs', 'Planters, fences and wooden gates'] } }
   },
   arrumos: {
     title: 'Arrumos Personalizados',
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>',
     lead: 'Soluções de arrumação que aproveitam cada centímetro útil do seu espaço.',
-    items: ['Roupeiros', 'Arrumos por medida', 'Bancos com arrumação interior']
+    items: ['Roupeiros', 'Arrumos por medida', 'Bancos com arrumação interior'],
+    i18n: { en: { title: 'Custom Storage', lead: 'Storage solutions that make the most of every useful centimetre of your space.', items: ['Wardrobes', 'Custom kitchen storage', 'Benches with internal storage'] } }
   },
   medida: {
     title: 'Mobiliário por Medida',
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 3-3 3 3 3-3 3 3 3-3M3 13l3 3 3-3 3 3 3-3 3 3 3-3M3 20h18"/></svg>',
     lead: 'Acompanhamos o projecto desde o levantamento de medidas até à instalação.',
-    items: ['Visita técnica e registo de medidas', 'Amostras de madeira e acabamentos', 'Construção integral na oficina da Madeira rústica®', 'Transporte, montagem e afinação no local']
+    items: ['Visita técnica e registo de medidas', 'Amostras de madeira e acabamentos', 'Construção integral na oficina da Madeira rústica®', 'Transporte, montagem e afinação no local'],
+    i18n: { en: { title: 'Made-to-Measure Furniture', lead: 'We follow the project from on-site measurements all the way to installation.', items: ['Technical visit and measurements', 'Wood and finish samples', 'Full construction in our workshop', 'Delivery, assembly and on-site adjustment'] } }
   }
 };
 
 const modal      = document.getElementById('service-modal');
 const modalClose = document.getElementById('modal-close');
+let currentServiceKey = null;
 const openModal  = key => {
   const s = services[key]; if (!s) return;
-  document.getElementById('modal-title').textContent = s.title;
-  document.getElementById('modal-lead').textContent  = s.lead;
+  currentServiceKey = key;
+  const L = (typeof getLang==='function') ? getLang() : 'pt';
+  const tr = (s.i18n && s.i18n[L]) ? s.i18n[L] : s;
+  document.getElementById('modal-title').textContent = tr.title;
+  document.getElementById('modal-lead').textContent  = tr.lead;
   document.getElementById('modal-icon').innerHTML    = s.icon;
-  document.getElementById('modal-list').innerHTML    = s.items.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('modal-list').innerHTML    = tr.items.map(i => `<li>${i}</li>`).join('');
   modal.classList.add('open'); document.body.classList.add('modal-open');
 };
 const closeModal = () => { modal.classList.remove('open'); document.body.classList.remove('modal-open'); };
@@ -1094,8 +1130,10 @@ const buildSlides = count => {
   }
   totalSlides = count; currentSlide = 0; updateCarousel(); startModalAuto();
 };
+let currentProjectKey = null;
 const openProject = key => {
   const p = projects[key]; if (!p) return;
+  currentProjectKey = key;
   document.getElementById('project-title').textContent = p.title;
   document.getElementById('project-tag').textContent   = p.tag;
   document.getElementById('project-desc').textContent  = p.desc;
@@ -1168,16 +1206,55 @@ const waFab = document.getElementById('wa-fab');
 const toast = document.getElementById('toast');
 let toastTimer;
 waFab.addEventListener('click', () => {
-  document.getElementById('toast-msg').textContent = 'Em breve disponível';
+  document.getElementById('toast-msg').textContent = t('toast_soon');
   toast.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
 });
 // ======== CARREGAR PROJETOS DA PLATAFORMA (SUPABASE) ========
+let _rawProjects = [];
+const _esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// Tradução das categorias (lista fixa) PT -> EN
+const CAT_EN = { 'Quarto':'Bedroom','Sala':'Living room','Cozinha':'Kitchen','Arrumos':'Storage','Closet':'Walk-in closet','Exterior':'Outdoor','Jardim':'Garden','Escritório':'Office','Entrada':'Entrance' };
+function _curLang(){ return (typeof getLang === 'function') ? getLang() : 'pt'; }
+function _pick(p, field){
+  const en = _curLang() === 'en';
+  if (field === 'titulo')    return (en && p.titulo_en)    ? p.titulo_en    : p.titulo;
+  if (field === 'descricao') return (en && p.descricao_en) ? p.descricao_en : (p.descricao || '');
+  if (field === 'categoria') return en ? (CAT_EN[p.categoria] || p.categoria) : p.categoria;
+  return '';
+}
+function _pickFicha(p){
+  if (_curLang() === 'en' && Array.isArray(p.ficha_en) && p.ficha_en.length) return p.ficha_en;
+  return Array.isArray(p.ficha) ? p.ficha : [];
+}
+function renderProjects(){
+  const grid = document.getElementById('gallery-grid');
+  const verMaisWrap = document.querySelector('.ver-mais-wrap');
+  if (!grid) return;
+  const lista = _rawProjects;
+  if (!lista.length){ if (verMaisWrap) verMaisWrap.style.display = 'none'; return; }
+  projects = {};
+  grid.innerHTML = lista.map((p, idx) => {
+    const key = 'sb_' + p.id;
+    projects[key] = { title: _pick(p,'titulo'), tag: _pick(p,'categoria'), desc: _pick(p,'descricao'),
+      meta: _pickFicha(p), slides: (p.fotos||[]).length || 1 };
+    const frames = (p.fotos||[]).map(u => '<div class="slide-frame"><img src="'+_esc(u)+'" alt="'+_esc(_pick(p,'titulo'))+'" loading="lazy" /></div>').join('');
+    const hidden = idx >= 9 ? ' hidden-project' : '';
+    const loc = p.localizacao ? '<span>'+_esc(p.localizacao)+'</span>' : '';
+    return '<div class="gallery-item reveal in'+hidden+'" data-project="'+key+'" tabindex="0" role="button">'
+      + '<span class="gallery-tag">'+_esc(_pick(p,'categoria'))+'</span>'
+      + '<div class="slide-track">'+frames+'</div>'
+      + '<div class="slide-dots"></div>'
+      + '<div class="gallery-caption"><h4>'+_esc(_pick(p,'titulo'))+'</h4>'+loc+'</div></div>';
+  }).join('');
+  if (typeof initSlideshows === 'function') initSlideshows();
+  if (verMaisWrap) verMaisWrap.style.display = (lista.length > 9) ? '' : 'none';
+  if (typeof refreshVerMais === 'function') refreshVerMais();
+}
 (async function(){
   const SB_URL = "https://jkztusnsfjdgawexynzg.supabase.co";
   const SB_KEY = "sb_publishable_HMZdPXkrO_E3nu_ksHRDmg_7q-tK0eV";
-  const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const grid = document.getElementById('gallery-grid');
   const verMaisWrap = document.querySelector('.ver-mais-wrap');
   if (verMaisWrap) verMaisWrap.style.display = 'none';
@@ -1187,25 +1264,137 @@ waFab.addEventListener('click', () => {
   const { data, error } = await db.from('projetos').select('*').eq('visivel', true)
     .order('ordem',{ascending:true}).order('criado_em',{ascending:false});
   if (error){ console.error('Erro a carregar projetos:', error); return; }
-  const lista = data || [];
-  if (!lista.length) return;
-  projects = {};
-  grid.innerHTML = lista.map((p, idx) => {
-    const key = 'sb_' + p.id;
-    projects[key] = { title: p.titulo, tag: p.categoria, desc: p.descricao || '',
-      meta: Array.isArray(p.ficha) ? p.ficha : [], slides: (p.fotos||[]).length || 1 };
-    const frames = (p.fotos||[]).map(u => '<div class="slide-frame"><img src="'+esc(u)+'" alt="'+esc(p.titulo)+'" loading="lazy" /></div>').join('');
-    const hidden = idx >= 9 ? ' hidden-project' : '';
-    const loc = p.localizacao ? '<span>'+esc(p.localizacao)+'</span>' : '';
-    return '<div class="gallery-item reveal in'+hidden+'" data-project="'+key+'" tabindex="0" role="button">'
-      + '<span class="gallery-tag">'+esc(p.categoria)+'</span>'
-      + '<div class="slide-track">'+frames+'</div>'
-      + '<div class="slide-dots"></div>'
-      + '<div class="gallery-caption"><h4>'+esc(p.titulo)+'</h4>'+loc+'</div></div>';
-  }).join('');
-  if (typeof initSlideshows === 'function') initSlideshows();
-  if (verMaisWrap && lista.length > 9) verMaisWrap.style.display = '';
+  _rawProjects = data || [];
+  renderProjects();
 })();
+</script>
+
+<script>
+// ======== I18N (PT / EN) ========
+const I18N = {
+  en: {
+    nav_about:"About", nav_services:"Services", nav_projects:"Projects", nav_why:"Why us", nav_contact:"Contact",
+    login_sub:"Restricted access. Please enter your credentials.",
+    login_user:"Username", login_user_ph:"username", login_pass:"Password", login_btn:"Sign in",
+    login_err:"Incorrect username or password.",
+    hero_eyebrow:"A focus on the rustic, where every project is unique in itself",
+    hero_h1:'Handmade furniture,<br/>designed <span class="accent">to measure</span>.',
+    hero_lead:"At Madeira Rústica® we focus on fully bespoke work, using traditional craftsmanship to build with a distinctly rustic character in every detail.",
+    hero_cta:"View Projects",
+    stat1_num:"Bespoke", stat1_lbl:"Every project unique",
+    stat2_num:"Fine wood", stat2_lbl:"Selected materials",
+    stat3_num:"Handmade", stat3_lbl:"Attention to detail",
+    float1:"Solid oak", float2:"Natural finish",
+    badge_h4:"Our own workshop in Portugal", badge_p:"Every piece is born in our hands.",
+    about_eyebrow:"Tradition",
+    about_h2:"We are a workshop specialised in rustic, made-to-measure furniture.",
+    about_p:"The result is unique, durable pieces built with soul — the very opposite of mass production. They are not for sale on the market.",
+    val1_h:"Handcrafted", val1_p:"Every piece is built by hand in our workshop.",
+    val2_h:"Quality", val2_p:"Fine woods and natural finishes.",
+    val3_h:"Personalisation", val3_p:"Designed to measure for your space.",
+    quote:'"Good wood takes time. It asks for hands that listen to the grain before cutting."',
+    quote_by:"— The Madeira Rústica Team",
+    serv_eyebrow:"What we do", serv_h2:"Made-to-measure carpentry services",
+    serv_p:"We design, build and install. From the first sketch to the final finish, the work is entirely ours.",
+    sc1_h:"Interior Furniture", sc1_p:"Custom shelving and furniture, with the most suitable woods for each project.",
+    sc2_h:"Outdoor Furniture", sc2_p:"Garden tables and chairs, and outdoor storage.",
+    sc3_h:"Custom Storage", sc3_p:"Wardrobes, made-to-measure kitchen storage, and benches with internal storage.",
+    sc4_h:"Made-to-Measure Furniture", sc4_p:"A project from sketch to installation, tailored to your space and lifestyle.",
+    more:"Learn more →",
+    proj_eyebrow:"Recent Projects", proj_h2:"Each project, a story in wood",
+    proj_p:"A selection of projects thought out, planned, built and crafted with soul, in full, in our workshop.",
+    ver_mais:"See more projects",
+    adn_h2:"The DNA of Madeira Rústica",
+    adn1:"Madeira Rústica's focus is on building new pieces, from scratch, in wood. We take pride in building unique pieces, each with a soul of its own. They are pieces conceived, designed, planned and executed with a singular and exclusive mindset for each project. They do not exist on the market, by their unique and distinct nature.",
+    adn2:"Every detail of each project is thought through beforehand, exhaustively, in the planning and overall execution phase. There is tremendous, meticulous planning at every stage of the project: from the general execution down to the smallest detail, in every aspect of every phase. We are extremely rigorous in the details, in every detail, at every stage of the construction process. There is strict discipline in each of the execution stages.",
+    adn3:"Each stage is a process in itself. The sum of all stages culminates in the full satisfaction of a completed project, with tremendous pride, and an immeasurable sense of Mission Accomplished! On completing each job, 99.99% is not enough. We accept only 100% in Quality Control, which we carry out ourselves, so that we can consider a job truly finished, in line with our rigorous standards of demand.",
+    adn4:"This rigour and demand, defined and imposed by Madeira Rústica itself, makes us proud of the fact that all our work has a soul, an existence, and a very distinct and unique identity. Ultimately, because we work to build and create from scratch, unique and unmatched pieces on the market, with a very distinct and well-defined identity, which in turn gives us the unequivocal confidence of knowing that the quality of our work will endure over time, for generations to come.",
+    adn_sign:"Because we are, proudly, Madeira Rústica.",
+    why_eyebrow:"Why choose us", why_h2:"Four reasons that make the difference",
+    wc1_h:"Selected woods", wc1_p:"We work only with certified woods, giving each the appropriate treatment for every situation.",
+    wc2_h:"Tailored project", wc2_p:"We visit and assess the space, advise on possible solutions, and adjust every detail to the specifics of the location.",
+    wc3_h:"Deadlines met", wc3_p:"We set realistic deadlines and keep them. Clear communication at every stage of the project.",
+    wc4_h:"Rustic finishes", wc4_p:"Hard work behind the scenes: every job is built in the workshop, with a clearly rustic character and finish.",
+    contact_eyebrow:"Let's talk", contact_h2:"Tell us your idea", contact_h3:"Talk to us",
+    contact_intro:"We're available to visit your space and design the ideal piece — indoor or outdoor.",
+    hours:"Mon – Fri · 09:00 – 18:00",
+    f_name:"Name", f_name_ph:"Your name", f_email:"Email", f_email_ph:"email@example.com",
+    f_msg:"Message", f_msg_ph:"Describe the piece you have in mind…", f_submit:"Send Message",
+    foot_about:"Workshop specialised in rustic work, in made-to-measure furniture for indoor and outdoor. Each piece, a story.",
+    foot_nav:"Navigation", foot_about_link:"About us", foot_contacts:"Contacts",
+    foot_rights:"All rights reserved.", foot_made:"Built by hand, with wood and care.",
+    modal_incl:"What's included", proj_cta:"Request a similar project",
+    wa_tip:"Chat with us on WhatsApp", toast_soon:"Coming soon",
+    ver_mais:"See more projects", ver_menos:"See less"
+  }
+};
+
+const LANG_KEY = 'mr_lang';
+let _lang = (function(){ try { return localStorage.getItem(LANG_KEY) || 'pt'; } catch(e){ return 'pt'; } })();
+function getLang(){ return _lang; }
+function t(key){
+  if (_lang === 'en' && I18N.en[key] != null) return I18N.en[key];
+  return _PT[key] != null ? _PT[key] : key;
+}
+
+// Guardar os textos PT originais (a partir do próprio HTML) para poder voltar atrás
+const _PT = {};
+function capturePT(){
+  document.querySelectorAll('[data-i18n]').forEach(el => { _PT[el.dataset.i18n] = el.textContent; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { _PT[el.dataset.i18nHtml] = el.innerHTML; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { _PT[el.dataset.i18nPh] = el.getAttribute('placeholder'); });
+  // chaves só-JS
+  _PT['login_err'] = 'Utilizador ou password incorretos.';
+  _PT['toast_soon'] = 'Em breve disponível';
+  _PT['ver_mais'] = 'Ver mais projectos';
+  _PT['ver_menos'] = 'Ver menos';
+}
+
+function applyLang(lang){
+  _lang = lang;
+  try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  document.documentElement.setAttribute('lang', lang);
+  const dict = lang === 'en' ? I18N.en : _PT;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = dict[el.dataset.i18n]; if (v != null) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = dict[el.dataset.i18nHtml]; if (v != null) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const v = dict[el.dataset.i18nPh]; if (v != null) el.setAttribute('placeholder', v);
+  });
+  // atualizar o estado visual do interruptor de idioma
+  const btn = document.getElementById('lang-toggle');
+  if (btn) {
+    btn.setAttribute('data-lang', lang);
+    btn.querySelectorAll('.lang-opt').forEach(o => o.classList.toggle('active', o.dataset.set === lang));
+  }
+  // se um modal de serviço estiver aberto, retraduz
+  if (typeof currentServiceKey !== 'undefined' && currentServiceKey &&
+      document.getElementById('service-modal').classList.contains('open')) {
+    openModal(currentServiceKey);
+  }
+  // re-renderizar a galeria de projetos na nova língua
+  if (typeof renderProjects === 'function') renderProjects();
+  if (typeof refreshVerMais === 'function') refreshVerMais();
+  // se um projeto estiver aberto, re-abrir já traduzido
+  if (typeof currentProjectKey !== 'undefined' && currentProjectKey &&
+      document.getElementById('project-modal').classList.contains('open')) {
+    openProject(currentProjectKey);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  capturePT();
+  const btn = document.getElementById('lang-toggle');
+  if (btn) btn.addEventListener('click', (e) => {
+    const opt = e.target.closest('.lang-opt');
+    if (opt) applyLang(opt.dataset.set);          // carregou diretamente em "pt" ou "en"
+    else applyLang(_lang === 'en' ? 'pt' : 'en'); // carregou no botão em geral -> alterna
+  });
+  applyLang(_lang);  // aplica o estado inicial (e marca o interruptor)
+});
 </script>
 </body>
 </html>

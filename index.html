@@ -192,7 +192,10 @@
   .nav { display: flex; align-items: center; justify-content: space-between; height: 80px; }
   .brand { display: flex; align-items: center; gap: 12px; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: var(--c-deep); }
   .brand img { height: 48px; width: 48px; object-fit: contain; border-radius: 50%; }
+  .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
   .brand-name { letter-spacing: 0.02em; }
+  .brand-slogan { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.66rem; letter-spacing: 0.02em; color: var(--c-muted); margin-top: 2px; }
+  .brand-slogan .sl-accent { color: var(--c-brown); }
   .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
   .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--c-text); position: relative; padding: 6px 0; transition: color .25s var(--ease); }
   .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px; background: var(--c-brown); transition: width .35s var(--ease); }
@@ -608,7 +611,10 @@
   <div class="container nav">
     <a href="#hero" class="brand">
       <img src="logo.jpg" alt="Madeira Rústica®" />
-      <span class="brand-name">Madeira Rústica®</span>
+      <span class="brand-text">
+        <span class="brand-name">Madeira Rústica®</span>
+        <span class="brand-slogan">Trabalhos <span class="sl-accent">Rústicos</span>, em <span class="sl-accent">Madeira</span>. ©</span>
+      </span>
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#sobre" data-i18n="nav_about">Sobre</a></li>
@@ -633,7 +639,7 @@
   <div class="container hero-grid">
     <div class="hero-text">
       <span class="eyebrow hero-in-1"><span data-i18n="hero_eyebrow">Foco na vertente rústica, onde cada projecto é único em si mesmo</span></span>
-      <h1 class="hero-in-2" data-i18n-html="hero_h1">Móveis feitos à <span class="accent">mão,</span><br/>pensados <span class="accent">à medida</span>.</h1>
+      <h1 class="hero-in-2" data-i18n-html="hero_h1">Móveis feitos à <span class="accent">mão,</span><br/>pensados <span class="accent">à medida.</span></h1>
       <p class="lead hero-in-3" data-i18n="hero_lead">Na Madeira Rústica® apostamos num trabalho totalmente personalizado, apostando na técnica de execução tradicional, por forma a construir com um cariz claramente rústico em cada detalhe.</p>
       <div class="hero-actions hero-in-4">
         <a href="#projetos" class="btn btn-primary"><span data-i18n="hero_cta">Ver Projetos</span> <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -764,8 +770,8 @@ Somos rigorosíssimos nos pormenores, em cada detalhe, em cada fase do processo 
 Existe uma rigorosa disciplina em cada uma das etapas da execução.</p>
         <p data-i18n="adn3">Cada etapa, constitui um processo por si só. A soma de todas as etapas, culmina na satisfação plena de um projecto concluído, com tremendo brio, e um imensurável sentimento de Missão Cumprida !
 Na conclusão de cada trabalho, 99,99% não chega. Apenas aceitamos 100% no Controlo de Qualidade, que nós próprios efectuamos, por forma a considerarmos que um trabalho, está, de facto, concluído, de acordo com os nossos rigorosos padrões de exigência.</p>
-        <p data-i18n="adn4">Este rigor e exigência definido e imposto pela própria Madeira Rústica®, orgulhamo-nos o facto de que todos os nossos trabalhos têm uma alma, uma existência, e uma identidade muito própria e única. 
-Em última análise, porque trabalhamos para construir e criar de raíz, peças únicas e sem igual no mercado, com uma identidade muito própria e muito bem definida, que, por sua vez, nos confere a confiança inequívoca, de sabermos que a qualidade do nosso trabalho irá perdurar no passar do tempo, para as próximos gerações vindouras.</p>
+        <p data-i18n="adn4">Este rigor e exigência definido e imposto pela própria Madeira Rústica®, orgulha-nos o facto de que todos os nossos trabalhos têm uma alma, uma existência, e uma identidade muito própria e única. 
+Em última análise, porque trabalhamos para criar e construir de raíz, peças únicas e sem igual no mercado, com uma identidade muito própria e muito bem definida, que, por sua vez, nos confere a confiança inequívoca, de sabermos que a qualidade do nosso trabalho irá perdurar no passar do tempo, para as próximos gerações vindouras.</p>
         <p class="adn-sign" data-i18n="adn_sign">Porque somos, orgulhosamente, Madeira Rústica®.</p>
     </div>
     <div class="section-divider"></div>
@@ -783,7 +789,7 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
       <div class="why-card reveal delay-1">
         
         <svg class="w-icn" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>
-        <h3 data-i18n="wc2_h">Projecto à medida</h3>
+        <h3 data-i18n="wc2_h">Projectos à medida</h3>
         <p data-i18n="wc2_p">Visitamos e analisamos o espaço, aconselhamos sobre possíveis soluções, e ajustamos cada detalhe às especificidades do local.</p>
       </div>
       <div class="why-card reveal delay-2">
@@ -813,7 +819,7 @@ Em última análise, porque trabalhamos para construir e criar de raíz, peças 
     <div class="contact-grid">
       <div class="contact-info reveal">
         <h3 data-i18n="contact_h3">Falar connosco</h3>
-        <p class="intro" data-i18n="contact_intro">Estamos disponíveis para visitar o seu espaço e desenhar a peça ideal — em interiores ou exteriores.</p>
+        <p class="intro" data-i18n="contact_intro">Estamos disponíveis para visitar o seu espaço e desenhar a peça ideal, seja em interiores, ou, exteriores.</p>
         <ul class="contact-list">
           <li>
             <div class="ci-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.94.34 1.85.62 2.74a2 2 0 01-.45 2.11L8 9.91a16 16 0 006 6l1.34-1.34a2 2 0 012.11-.45c.89.28 1.8.49 2.74.62A2 2 0 0122 16.92z"/></svg></div>
@@ -1061,7 +1067,7 @@ const services = {
     title: 'Mobiliário por Medida',
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 3-3 3 3 3-3 3 3 3-3M3 13l3 3 3-3 3 3 3-3 3 3 3-3M3 20h18"/></svg>',
     lead: 'Acompanhamos o projecto desde o levantamento de medidas até à instalação.',
-    items: ['Visita técnica e registo de medidas', 'Amostras de madeira e acabamentos', 'Construção integral na oficina da Madeira Rústica®', 'Transporte, montagem e afinação no local'],
+    items: ['Visita técnica e registo de medidas', 'Construção integral na oficina da Madeira Rústica®', 'Transporte, montagem e afinação no local'],
     i18n: { en: { title: 'Made-to-Measure Furniture', lead: 'We follow the project from on-site measurements all the way to installation.', items: ['Technical visit and measurements', 'Wood and finish samples', 'Full construction in the Madeira Rústica® workshop', 'Delivery, assembly and on-site adjustment'] } }
   }
 };
@@ -1308,7 +1314,7 @@ const I18N = {
     adn_h2:"DNA of Madeira Rústica®",
     adn1:"Madeira Rústica® focus is on building new pieces, from scratch, in wood. We take pride in building unique pieces, each with a soul of its own. They are pieces conceived, designed, planned and executed with a singular and exclusive mindset for each project. They do not exist on the market, by their unique and distinct nature.",
     adn2:"Every detail of each project is thought through beforehand, exhaustively, in the planning and overall execution phase. There is tremendous, meticulous planning at every stage of the project: from the general execution down to the smallest detail, in every aspect of every phase. We are extremely rigorous in the details, in every detail, at every stage of the construction process. There is strict discipline in each of the execution stages.",
-    adn3:"Each stage is a process in itself. The sum of all stages culminates in the full satisfaction of a completed project, with tremendous pride, and an immeasurable sense of Mission Accomplished! On completing each job, 99.99% is not enough. We accept only 100% in Quality Control, which we carry out ourselves, so that we can consider a job truly finished, in line with our rigorous standards of demand.",
+    adn3:"Each stage is a process in itself. The sum of all stages culminates in the full satisfaction of a completed project, with tremendous pride, and an immeasurable sense of Mission Accomplished! On completing each job, 99,99% is not enough. We accept only 100% in Quality Control, which we carry out ourselves, so that we can consider a job truly finished, in line with our rigorous standards of demand.",
     adn4:"This rigour and demand, defined and imposed by Madeira Rústica® itself, makes us proud of the fact that all our work has a soul, an existence, and a very distinct and unique identity. Ultimately, because we work to build and create from scratch, unique and unmatched pieces on the market, with a very distinct and well-defined identity, which in turn gives us the unequivocal confidence of knowing that the quality of our work will endure over time, for generations to come.",
     adn_sign:"Because we are, proudly, Madeira Rústica®.",
     why_eyebrow:"Why choose us", why_h2:"Four reasons that make the difference",

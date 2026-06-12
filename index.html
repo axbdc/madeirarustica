@@ -1085,7 +1085,7 @@ const openModal  = key => {
   document.getElementById('modal-title').textContent = tr.title;
   document.getElementById('modal-lead').textContent  = tr.lead;
   document.getElementById('modal-icon').innerHTML    = s.icon;
-  document.getElementById('modal-list').innerHTML    = tr.items.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('modal-list').innerHTML    = tr.items.map(i => `<li><span>${i}</span></li>`).join('');
   modal.classList.add('open'); document.body.classList.add('modal-open');
   if (typeof italicizeBrand === 'function') italicizeBrand(modal);
 };

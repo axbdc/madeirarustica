@@ -215,19 +215,23 @@
       <div class="row2">
         <div class="field"><label>Título do projeto *</label><input type="text" id="f-titulo" placeholder="Ex: Armário de quarto por medida" /></div>
         <div class="field"><label>Categoria *</label>
-          <input type="text" id="f-categoria" list="lista-categorias" placeholder="Escolhe da lista ou escreve nova..." autocomplete="off" />
-          <datalist id="lista-categorias">
-            <option value="Quarto"></option>
-            <option value="Sala"></option>
-            <option value="Cozinha"></option>
-            <option value="Arrumos"></option>
-            <option value="Closet"></option>
-            <option value="Exterior"></option>
-            <option value="Jardim"></option>
-            <option value="Escritório"></option>
-            <option value="Entrada"></option>
-          </datalist>
-        </div>
+  <select id="f-categoria">
+    <option>Quarto</option>
+    <option>Sala</option>
+    <option>Sala de Estar</option>
+    <option>Cozinha</option>
+    <option>Casa de Banho</option>
+    <option>Arrumos</option>
+    <option>Closet</option>
+    <option>Exterior</option>
+    <option>Jardim</option>
+    <option>Escritório</option>
+    <option>Entrada</option>
+    <option>Garrafeira</option>
+    <option>Adega</option>
+    <option>Mesa Rústica de Máquinas</option>
+  </select>
+</div>
       </div>
 
       <div class="field"><label>🇬🇧 Título em inglês <span style="font-weight:400;opacity:.6;">(opcional — se vazio, o site usa o português)</span></label><input type="text" id="f-titulo-en" placeholder="Ex: Custom bedroom wardrobe" /></div>
@@ -389,7 +393,6 @@ if (configOk) {
     $('f-titulo').value = p?p.titulo:'';
     $('f-titulo-en').value = p?(p.titulo_en||''):'';
     $('f-categoria').value = p?p.categoria:'Quarto';
-    $('f-categoria-en').value = p?(p.categoria_en||''):''; 
     $('f-local').value = p?(p.localizacao||''):'';
     $('f-desc').value = p?(p.descricao||''):'';
     $('f-desc-en').value = p?(p.descricao_en||''):'';
@@ -489,7 +492,6 @@ if (configOk) {
 
     const payload={ titulo, categoria,
       titulo_en:$('f-titulo-en').value.trim() || null,
-      categoria_en:$('f-categoria-en').value.trim() || null,
       localizacao:$('f-local').value.trim(),
       descricao:$('f-desc').value.trim(),
       descricao_en:$('f-desc-en').value.trim() || null,

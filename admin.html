@@ -215,10 +215,18 @@
       <div class="row2">
         <div class="field"><label>Título do projeto *</label><input type="text" id="f-titulo" placeholder="Ex: Armário de quarto por medida" /></div>
         <div class="field"><label>Categoria *</label>
-          <select id="f-categoria">
-            <option>Quarto</option><option>Sala</option><option>Cozinha</option><option>Arrumos</option>
-            <option>Closet</option><option>Exterior</option><option>Jardim</option><option>Escritório</option><option>Entrada</option>
-          </select>
+          <input type="text" id="f-categoria" list="lista-categorias" placeholder="Escolhe da lista ou escreve nova..." autocomplete="off" />
+          <datalist id="lista-categorias">
+            <option value="Quarto"></option>
+            <option value="Sala"></option>
+            <option value="Cozinha"></option>
+            <option value="Arrumos"></option>
+            <option value="Closet"></option>
+            <option value="Exterior"></option>
+            <option value="Jardim"></option>
+            <option value="Escritório"></option>
+            <option value="Entrada"></option>
+          </datalist>
         </div>
       </div>
 

@@ -1274,7 +1274,7 @@ function renderProjects(){
     projects[key] = { title: _pick(p,'titulo'), tag: _pick(p,'categoria'), desc: _pick(p,'descricao'),
       meta: _pickFicha(p), slides: (p.fotos||[]).length || 1 };
     const frames = (p.fotos||[]).map(u => '<div class="slide-frame"><img src="'+_esc(u)+'" alt="'+_esc(_pick(p,'titulo'))+'" loading="lazy" /></div>').join('');
-    const hidden = idx >= 9 ? ' hidden-project' : '';
+    const hidden = idx >= 9 ? (expanded ? ' hidden-project visible' : ' hidden-project') : '';
     const loc = p.localizacao ? '<span>'+_esc(p.localizacao)+'</span>' : '';
     return '<div class="gallery-item reveal in'+hidden+'" data-project="'+key+'" tabindex="0" role="button">'
       + '<span class="gallery-tag">'+_esc(_pick(p,'categoria'))+'</span>'

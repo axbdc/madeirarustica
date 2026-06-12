@@ -1258,11 +1258,16 @@ const CAT_EN = {
   'Portão Exterior - Moradia':'Exterior Gate - House'
 };
 function _curLang(){ return (typeof getLang === 'function') ? getLang() : 'pt'; }
+// Normaliza para comparação: tira espaços extra e ignora maiúsculas/minúsculas
+function _catKey(s){ return String(s == null ? '' : s).trim().replace(/\s+/g,' ').toLowerCase(); }
+// Versão do mapa com as chaves normalizadas (gerada a partir de CAT_EN)
+const CAT_EN_NORM = Object.keys(CAT_EN).reduce((m,k)=>{ m[_catKey(k)] = CAT_EN[k]; return m; }, {});
+function _catEN(cat){ return CAT_EN_NORM[_catKey(cat)] || cat; }
 function _pick(p, field){
   const en = _curLang() === 'en';
   if (field === 'titulo')    return (en && p.titulo_en)    ? p.titulo_en    : p.titulo;
   if (field === 'descricao') return (en && p.descricao_en) ? p.descricao_en : (p.descricao || '');
-  if (field === 'categoria') return en ? (CAT_EN[p.categoria] || p.categoria) : p.categoria;
+  if (field === 'categoria') return en ? _catEN(p.categoria) : p.categoria;
   return '';
 }
 function _pickFicha(p){

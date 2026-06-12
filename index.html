@@ -310,7 +310,7 @@
 
   /* ---------- Serviços ---------- */
   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-  .service-card { background: #fff; border-radius: var(--radius); padding: 36px 28px; border: 1px solid var(--c-line); transition: all .45s var(--ease); position: relative; overflow: hidden; }
+  .service-card { background: #fff; border-radius: var(--radius); padding: 36px 28px; border: 1px solid var(--c-line); transition: all .45s var(--ease); position: relative; overflow: hidden; cursor: pointer; }
   .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--c-cream), var(--c-bg)); opacity: 0; transition: opacity .45s var(--ease); z-index: 0; }
   .service-card > * { position: relative; z-index: 1; }
   .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(139,90,43,0.35); }
@@ -1090,7 +1090,12 @@ const openModal  = key => {
   if (typeof italicizeBrand === 'function') italicizeBrand(modal);
 };
 const closeModal = () => { modal.classList.remove('open'); document.body.classList.remove('modal-open'); };
-document.querySelectorAll('.service-card .more').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.service)));
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const btn = card.querySelector('.more');
+    if (btn) openModal(btn.dataset.service);
+  });
+});
 modalClose.addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });

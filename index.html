@@ -196,6 +196,7 @@
   .brand-name { letter-spacing: 0.02em; }
   .brand-slogan { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.66rem; letter-spacing: 0.02em; color: var(--c-muted); margin-top: 2px; }
   .brand-slogan .sl-accent { color: var(--c-brown); }
+  .brand-em { font-style: italic; }
   .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
   .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--c-text); position: relative; padding: 6px 0; transition: color .25s var(--ease); }
   .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px; background: var(--c-brown); transition: width .35s var(--ease); }
@@ -272,10 +273,11 @@
     mix-blend-mode: multiply;
   }
   .hero-art::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.25), transparent 55%); }
-  .hero-badge { position: absolute; bottom: 24px; left: 24px; right: 24px; background: rgba(250,246,238,0.96); backdrop-filter: blur(8px); padding: 18px 22px; border-radius: 14px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-md); z-index: 2; }
-  .hero-badge .icn { width: 44px; height: 44px; background: var(--c-deep); color: var(--c-cream); border-radius: 12px; display: grid; place-items: center; }
-  .hero-badge h4 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--c-deep); margin-bottom: 2px; }
-  .hero-badge p { font-size: 0.82rem; color: var(--c-muted); }
+  .hero-badge { position: absolute; bottom: 18px; left: 18px; right: 18px; background: rgba(250,246,238,0.96); backdrop-filter: blur(8px); padding: 11px 14px; border-radius: 11px; display: flex; align-items: center; gap: 11px; box-shadow: var(--shadow-md); z-index: 2; }
+  .hero-badge .icn { width: 34px; height: 34px; background: var(--c-deep); color: var(--c-cream); border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; }
+  .hero-badge .icn svg { width: 17px; height: 17px; }
+  .hero-badge h4 { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--c-deep); margin-bottom: 1px; }
+  .hero-badge p { font-size: 0.72rem; color: var(--c-muted); line-height: 1.35; }
   .hero-floating { position: absolute; background: rgba(250,246,238,0.96); backdrop-filter: blur(8px); padding: 14px 18px; border-radius: 12px; box-shadow: var(--shadow-md); font-size: 0.85rem; font-weight: 500; color: var(--c-deep); display: flex; align-items: center; gap: 10px; z-index: 3; }
   .hero-floating.f1 { top: 8%; left: -28px; animation: float 6s ease-in-out infinite; }
   .hero-floating.f2 { top: 45%; right: -32px; animation: float 7s ease-in-out infinite reverse; }
@@ -819,7 +821,7 @@ Em última análise, porque trabalhamos para criar e construír de raíz, peças
     <div class="contact-grid">
       <div class="contact-info reveal">
         <h3 data-i18n="contact_h3">Falar connosco</h3>
-        <p class="intro" data-i18n="contact_intro">Estamos disponíveis para visitar o seu espaço e conceber a peça ideia, seja em interiores, ou, em exteriores.</p>
+        <p class="intro" data-i18n="contact_intro">Estamos disponíveis para visitar o seu espaço e conceber a peça ideal, seja em interiores, ou, em exteriores.</p>
         <ul class="contact-list">
           <li>
             <div class="ci-icn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.94.34 1.85.62 2.74a2 2 0 01-.45 2.11L8 9.91a16 16 0 006 6l1.34-1.34a2 2 0 012.11-.45c.89.28 1.8.49 2.74.62A2 2 0 0122 16.92z"/></svg></div>
@@ -1061,14 +1063,14 @@ const services = {
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>',
     lead: 'Soluções de arrumação que aproveitam cada centímetro útil do seu espaço.',
     items: ['Roupeiros', 'Arrumos por medida', 'Bancos com arrumação interior'],
-    i18n: { en: { title: 'Custom Storage', lead: 'Storage solutions that make the most of every useful centimetre of your space.', items: ['Wardrobes', 'Made-to-measure storage', 'Benches with internal storage'] } }
+    i18n: { en: { title: 'Custom Storage', lead: 'Storage solutions that make the most of every useful centimetre of your space.', items: ['Wardrobes', 'Custom-made storage', 'Benches with internal storage'] } }
   },
   medida: {
     title: 'Mobiliário por Medida',
     icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 3-3 3 3 3-3 3 3 3-3M3 13l3 3 3-3 3 3 3-3 3 3 3-3M3 20h18"/></svg>',
     lead: 'Acompanhamos o projecto desde o levantamento de medidas até à instalação.',
     items: ['Visita técnica e registo de medidas', 'Construção integral na oficina da Madeira Rústica®', 'Transporte, montagem e afinação no local'],
-    i18n: { en: { title: 'Made-to-Measure Furniture', lead: 'We follow the project from on-site measurements all the way to installation.', items: ['Technical visit and measurements', 'Full construction in the Madeira Rústica® workshop', 'Delivery, assembly and on-site adjustments'] } }
+    i18n: { en: { title: 'Custom-made Furniture', lead: 'We follow the project from on-site measurements all the way to installation.', items: ['Technical visit and measurements', 'Full construction in the Madeira Rústica® workshop', 'Delivery, assembly and on-site adjustments'] } }
   }
 };
 
@@ -1085,6 +1087,7 @@ const openModal  = key => {
   document.getElementById('modal-icon').innerHTML    = s.icon;
   document.getElementById('modal-list').innerHTML    = tr.items.map(i => `<li>${i}</li>`).join('');
   modal.classList.add('open'); document.body.classList.add('modal-open');
+  if (typeof italicizeBrand === 'function') italicizeBrand(modal);
 };
 const closeModal = () => { modal.classList.remove('open'); document.body.classList.remove('modal-open'); };
 document.querySelectorAll('.service-card .more').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.service)));
@@ -1258,6 +1261,7 @@ function renderProjects(){
   if (typeof initSlideshows === 'function') initSlideshows();
   if (verMaisWrap) verMaisWrap.style.display = (lista.length > 9) ? '' : 'none';
   if (typeof refreshVerMais === 'function') refreshVerMais();
+  if (typeof italicizeBrand === 'function') italicizeBrand(grid);
 }
 (async function(){
   const SB_URL = "https://jkztusnsfjdgawexynzg.supabase.co";
@@ -1301,7 +1305,7 @@ const I18N = {
     val3_h:"Personalisation", val3_p:"Custom-made, designed for your space.",
     quote:'"Good wood takes time. It asks for hands that listen to the grain before cutting."',
     quote_by:"— The Madeira Rústica® Team",
-    serv_eyebrow:"What we do", serv_h2:"Made-to-measure carpentry services",
+    serv_eyebrow:"What we do", serv_h2:"Custom-made carpentry services",
     serv_p:"We design, build and install. From the first sketch to the final finish, the work is entirely Madeira Rústica®.",
     sc1_h:"Interior Furniture", sc1_p:"Custom shelving and furniture, with the most suitable woods for each project.",
     sc2_h:"Outdoor Furniture", sc2_p:"Garden tables and chairs, and outdoor storage.",
@@ -1314,20 +1318,20 @@ const I18N = {
     adn_h2:"DNA of Madeira Rústica®",
     adn1:"Madeira Rústica® focus is on building new pieces, from scratch, in wood. We take pride in building unique pieces, each with a soul of its own. They are pieces conceived, designed, planned and executed with a singular and exclusive mindset for each project. They do not exist on the market, by their unique and distinct nature.",
     adn2:"Every detail of each project is thought through beforehand, exhaustively, in the planning and overall execution phase. There is tremendous, meticulous planning at every stage of the project: from the general execution down to the smallest detail, in every aspect of every phase. We are extremely rigorous in the details, in every detail, at every stage of the construction process. There is strict discipline in each of the execution stages.",
-    adn3:"Each stage is a process in itself. The sum of all stages culminates in the full satisfaction of a completed project, with tremendous pride, and an immeasurable sense of Mission Accomplished ! When finishing each piece of wood, 99,99% does not suffice. We accept no less than 100%  in Quality Control, which we carry out ourselves, so that we can consider a job truly finished, in line with our rigorous standards of demand.",
-    adn4:"These rigorous standards, defined and imposed by Madeira Rústica®, makes us proud of the fact that all the custom-made work that we produce, has its own soul, has its own charachter, has its own very unique exclusive existence and identity in itself. Ultimately, because we work to build and create from scratch, unique in its essence, and unmatched pieces, which cannot be found on the market, with a distinct and well-defined own identity, with a very distinct and well-defined identity, which, in turn, gives us the unequivocal confidence of knowing that the quality of our work will endure over time, for generations to come.",
+    adn3:"Each stage is a process in itself. The sum of all stages culminates in the full satisfaction of a completed project, with tremendous pride, and an immeasurable sense of Mission Accomplished ! When finishing each piece of wood, 99,99% does not suffice. We accept no less than 100% in Quality Control, which we carry out ourselves, so that we can consider a job truly finished, in line with our rigorous standards of job completion.",
+    adn4:"The rigorous standards, defined and imposed by Madeira Rústica®, make us proud of the custom-made work that we produce, has its own soul, has its own charachter, has its own very unique exclusive existence and identity in itself. Ultimately, because we work to build and create from scratch, unique in its essence, and unmatched pieces, which cannot be found on the market, with a distinct and well-defined own identity, with a very distinct and well-defined identity, which, in turn, gives us the unequivocal confidence of knowing that the quality of our work will endure over time, for generations to come.",
     adn_sign:"Because we, proudly are, Madeira Rústica®.",
     why_eyebrow:"Why choose us", why_h2:"Four reasons that make the difference",
     wc1_h:"Selected woods", wc1_p:"We work only with certified woods, giving each the appropriate treatment for every situation.",
-    wc2_h:"Taylor-made projects", wc2_p:"We visit and assess the space, advise on possible solutions, and adjust every detail to the specifics of the location.",
-    wc3_h:"Deadlines met", wc3_p:"We set realistic deadlines and keep them. Clear communication at every stage of the project.",
-    wc4_h:"Rustic finishes", wc4_p:"Hard work behind the scenes: every job is built in the Madeira Rústica® workshop, with a clearly rustic character and finish. Extremely hard work behind.... with a clear rustic",
+    wc2_h:"Tailor-made projects", wc2_p:"We visit and assess the space, advise on possible solutions, and adjust every detail to the specifics of the location.",
+    wc3_h:"Deadlines", wc3_p:"We set realistic deadlines, and keep them. Clear communication, at every stage of the project.",
+    wc4_h:"Rustic finishes", wc4_p:"Extremely hard work produced behind the scenes: every job is built in the Madeira Rústica® workshop, with a very clear rustic character, soul, and finish.",
     contact_eyebrow:"Let's talk", contact_h2:"Tell us your idea", contact_h3:"Talk to us",
     contact_intro:"We're available to visit your space and design the ideal piece, be it, for indoors, or, for outdoors.",  
     hours:"Mon – Fri · 09:00 – 18:00",
     f_name:"Name", f_name_ph:"Your name", f_email:"Email", f_email_ph:"email@example.com",
     f_msg:"Message", f_msg_ph:"Describe the piece you have in mind…", f_submit:"Send Message",
-    foot_about:"Workshop specialised in rustic wooden work; In custom-made furniture for indoor and  for outdoor spaces. Each rustic wooden piece, its very own and unique storytelling.",
+    foot_about: "Workshop specialised in rustic wooden work.\nCustom-made furniture, for indoor and for outdoor spaces.\nEach rustic wooden piece, its own truely unique storytelling.",    
     foot_nav:"Navigation", foot_about_link:"About us", foot_contacts:"Contacts",
     foot_rights:"All rights reserved.", foot_made:"Built by hand, with wood and care.",
     modal_incl:"What's included", proj_cta:"Request a similar project",
@@ -1385,11 +1389,49 @@ function applyLang(lang){
   // re-renderizar a galeria de projetos na nova língua
   if (typeof renderProjects === 'function') renderProjects();
   if (typeof refreshVerMais === 'function') refreshVerMais();
-  // se um projeto estiver aberto, re-abrir já traduzido
+// se um projeto estiver aberto, re-abrir já traduzido
   if (typeof currentProjectKey !== 'undefined' && currentProjectKey &&
       document.getElementById('project-modal').classList.contains('open')) {
     openProject(currentProjectKey);
   }
+  italicizeBrand();
+}
+
+// Põe "Madeira Rústica" em itálico em todo o conteúdo, exceto a marca/slogan
+// do cabeçalho, o login e a marca do rodapé.
+function italicizeBrand(root){
+  root = root || document.body;
+  const SKIP = new Set(['SCRIPT','STYLE','EM','TEXTAREA','INPUT','OPTION']);
+  const excluded = Array.from(document.querySelectorAll('.brand-name, .brand-slogan, #login-screen h2, .footer-brand span'));
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      if (!node.nodeValue || node.nodeValue.indexOf('Madeira Rústica') === -1) return NodeFilter.FILTER_REJECT;
+      let p = node.parentNode;
+      while (p && p !== document){
+        if (SKIP.has(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        if (p.classList && p.classList.contains('brand-em')) return NodeFilter.FILTER_REJECT;
+        if (excluded.indexOf(p) !== -1) return NodeFilter.FILTER_REJECT;
+        p = p.parentNode;
+      }
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const targets = [];
+  let node; while ((node = walker.nextNode())) targets.push(node);
+  targets.forEach(n => {
+    const frag = document.createDocumentFragment();
+    n.nodeValue.split(/(Madeira Rústica®?)/g).forEach(part => {
+      if (/^Madeira Rústica®?$/.test(part)){
+        const em = document.createElement('em');
+        em.className = 'brand-em';
+        em.textContent = part;
+        frag.appendChild(em);
+      } else if (part){
+        frag.appendChild(document.createTextNode(part));
+      }
+    });
+    n.parentNode.replaceChild(frag, n);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

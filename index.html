@@ -1232,13 +1232,7 @@ const _esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&
 // Tradução das categorias (lista fixa) PT -> EN
 const CAT_EN = { 'Quarto':'Bedroom','Sala':'Living room','Cozinha':'Kitchen','Arrumos':'Storage','Closet':'Walk-in closet','Exterior':'Outdoor','Jardim':'Garden','Escritório':'Office','Entrada':'Entrance' };
 function _curLang(){ return (typeof getLang === 'function') ? getLang() : 'pt'; }
-function _pick(p, field){
-  const en = _curLang() === 'en';
-  if (field === 'titulo')    return (en && p.titulo_en)    ? p.titulo_en    : p.titulo;
-  if (field === 'descricao') return (en && p.descricao_en) ? p.descricao_en : (p.descricao || '');
-  if (field === 'categoria') return en ? (CAT_EN[p.categoria] || p.categoria) : p.categoria;
-  return '';
-}
+if (field === 'categoria') return en ? (p.categoria_en || CAT_EN[p.categoria] || p.categoria) : p.categoria;
 function _pickFicha(p){
   if (_curLang() === 'en' && Array.isArray(p.ficha_en) && p.ficha_en.length) return p.ficha_en;
   return Array.isArray(p.ficha) ? p.ficha : [];

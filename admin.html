@@ -231,6 +231,8 @@
       </div>
 
       <div class="field"><label>🇬🇧 Título em inglês <span style="font-weight:400;opacity:.6;">(opcional — se vazio, o site usa o português)</span></label><input type="text" id="f-titulo-en" placeholder="Ex: Custom bedroom wardrobe" /></div>
+      
+      <div class="field"><label>🇬🇧 Categoria em inglês <span style="font-weight:400;opacity:.6;">(opcional — se vazia, o site usa o português)</span></label><input type="text" id="f-categoria-en" placeholder="Ex: Bedroom" /></div>
 
       <div class="field"><label>Localização</label><input type="text" id="f-local" placeholder="Ex: Porto · 4,2m de frente" /></div>
 
@@ -387,6 +389,7 @@ if (configOk) {
     $('f-titulo').value = p?p.titulo:'';
     $('f-titulo-en').value = p?(p.titulo_en||''):'';
     $('f-categoria').value = p?p.categoria:'Quarto';
+    $('f-categoria-en').value = p?(p.categoria_en||''):''; 
     $('f-local').value = p?(p.localizacao||''):'';
     $('f-desc').value = p?(p.descricao||''):'';
     $('f-desc-en').value = p?(p.descricao_en||''):'';
@@ -486,6 +489,7 @@ if (configOk) {
 
     const payload={ titulo, categoria,
       titulo_en:$('f-titulo-en').value.trim() || null,
+      categoria_en:$('f-categoria-en').value.trim() || null,
       localizacao:$('f-local').value.trim(),
       descricao:$('f-desc').value.trim(),
       descricao_en:$('f-desc-en').value.trim() || null,

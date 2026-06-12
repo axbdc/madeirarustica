@@ -1252,7 +1252,7 @@ function _pick(p, field){
   const en = _curLang() === 'en';
   if (field === 'titulo')    return (en && p.titulo_en)    ? p.titulo_en    : p.titulo;
   if (field === 'descricao') return (en && p.descricao_en) ? p.descricao_en : (p.descricao || '');
-  if (field === 'categoria') return en ? (p.categoria_en || CAT_EN[p.categoria] || p.categoria) : p.categoria;
+  if (field === 'categoria') return en ? (CAT_EN[p.categoria] || p.categoria) : p.categoria;
   return '';
 }
 function _pickFicha(p){

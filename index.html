@@ -1030,24 +1030,61 @@ if (btnVerMais) btnVerMais.addEventListener('click', () => {
 // ======== FORM ========
 const form   = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
+// Chave pública do Web3Forms (envia as mensagens para info@madeirarustica.pt)
+const WEB3FORMS_KEY = 'b67d3e18-66ab-4c94-95c5-3a69d1051f3a';
 form.addEventListener('submit', e => {
   e.preventDefault();
+  const en = (typeof getLang === 'function' && getLang() === 'en');
   const name = form.name.value.trim();
   const email = form.email.value.trim();
   const message = form.message.value.trim();
   if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message) {
     status.style.color = '#E8A87C';
-    status.textContent = 'Por favor preencha todos os campos com dados válidos.';
+    status.textContent = en
+      ? 'Please fill in all fields with valid information.'
+      : 'Por favor preencha todos os campos com dados válidos.';
     return;
   }
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) btn.disabled = true;
   status.style.color = '';
-  status.textContent = 'Obrigado, ' + name.split(' ')[0] + '. Recebemos a sua mensagem e respondemos em breve.';
-  form.reset();
-  setTimeout(() => { status.textContent = ''; }, 6000);
-});
+  status.textContent = en ? 'Sending…' : 'A enviar…';
 
-// ======== FOOTER YEAR ========
-document.getElementById('year').textContent = new Date().getFullYear();
+  const payload = {
+    access_key: WEB3FORMS_KEY,
+    subject: 'Novo contacto pelo site — Madeira Rústica',
+    from_name: 'Site Madeira Rústica',
+    name: name,
+    email: email,
+    message: message
+  };
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) {
+      status.style.color = '';
+      status.textContent = en
+        ? 'Thank you, ' + name.split(' ')[0] + '. We have received your message and will reply soon.'
+        : 'Obrigado, ' + name.split(' ')[0] + '. Recebemos a sua mensagem e respondemos em breve.';
+      form.reset();
+      setTimeout(() => { status.textContent = ''; }, 6000);
+    } else {
+      throw new Error(data.message || 'erro');
+    }
+  })
+  .catch(() => {
+    status.style.color = '#E8A87C';
+    status.textContent = en
+      ? 'Something went wrong. Please try again or email us directly.'
+      : 'Ocorreu um erro. Tente novamente ou contacte-nos por email.';
+  })
+  .finally(() => { if (btn) btn.disabled = false; });
+});
 
 // ======== SERVICE MODAL ========
 const services = {

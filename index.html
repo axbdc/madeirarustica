@@ -447,14 +447,14 @@
   /* ---------- Project Modal ---------- */
   .project-modal { max-width: 760px; padding: 0; overflow-x: hidden; overflow-y: auto; }
   .project-modal .modal-close { background: rgba(250,246,238,0.92); backdrop-filter: blur(8px); }
-  .carousel { position: relative; aspect-ratio: 16/9; background: var(--c-light); overflow: hidden; border-radius: 20px 20px 0 0; transition: height .45s var(--ease); }
+  .carousel { position: relative; aspect-ratio: 16/9; background: var(--c-light); overflow: hidden; border-radius: 20px 20px 0 0; }
   .carousel.has-images { aspect-ratio: auto; background: var(--c-bg); }
   .carousel-track { position: absolute; inset: 0; display: flex; transition: transform .55s var(--ease); }
-  .carousel.has-images .carousel-track { display: block; transform: none !important; transition: none; }
+  .carousel.has-images .carousel-track { position: static; display: block; transform: none !important; transition: none; }
   .carousel-slide { flex: 0 0 100%; height: 100%; position: relative; background: repeating-linear-gradient(95deg, rgba(92,58,30,0.10) 0 2px, transparent 2px 16px), linear-gradient(135deg, var(--c-light) 0%, var(--c-wood) 60%, var(--c-brown) 100%); }
-  .carousel.has-images .carousel-slide { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .45s var(--ease); pointer-events: none; background: var(--c-bg); }
-  .carousel.has-images .carousel-slide.active { opacity: 1; pointer-events: auto; z-index: 2; }
-  .carousel.has-images .carousel-slide img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+  .carousel.has-images .carousel-slide { position: relative; height: auto; display: none; background: transparent; flex: none; }
+  .carousel.has-images .carousel-slide.active { display: block; }
+  .carousel.has-images .carousel-slide img { position: static; width: 100%; height: auto; max-height: 75vh; display: block; object-fit: contain; }
   .carousel-slide.tone-2 { background: repeating-linear-gradient(110deg, rgba(42,26,15,0.10) 0 2px, transparent 2px 18px), linear-gradient(150deg, #d9c19a 0%, var(--c-wood) 70%, var(--c-dark) 100%); }
   .carousel-slide.tone-3 { background: repeating-linear-gradient(70deg, rgba(92,58,30,0.08) 0 2px, transparent 2px 14px), linear-gradient(120deg, var(--c-cream) 0%, var(--c-wood) 80%); }
   .carousel-slide.tone-4 { background: repeating-linear-gradient(100deg, rgba(42,26,15,0.10) 0 1px, transparent 1px 20px), linear-gradient(160deg, var(--c-wood) 0%, var(--c-dark) 100%); }
@@ -1230,33 +1230,11 @@ const updateCarousel = () => {
     carouselTrack.querySelectorAll('.carousel-slide').forEach((s, i) => {
       s.classList.toggle('active', i === currentSlide);
     });
-    adjustCarouselHeight();
   } else {
     carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
   }
   carouselDots.querySelectorAll('button').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
 };
-
-const adjustCarouselHeight = () => {
-  const carousel = document.getElementById('carousel');
-  if (!carousel.classList.contains('has-images')) return;
-  const imgs = carouselTrack.querySelectorAll('.carousel-slide img');
-  const img = imgs[currentSlide];
-  if (!img) return;
-  const apply = () => {
-    const w = carousel.clientWidth;
-    if (!w || !img.naturalWidth) return;
-    const ratio = img.naturalHeight / img.naturalWidth;
-    const maxH = Math.min(window.innerHeight * 0.75, 720);
-    carousel.style.height = Math.min(w * ratio, maxH) + 'px';
-  };
-  if (img.complete && img.naturalWidth) apply();
-  else img.addEventListener('load', apply, { once: true });
-};
-
-window.addEventListener('resize', () => {
-  if (projectModal.classList.contains('open')) adjustCarouselHeight();
-});
 const startModalAuto = () => {
   if (modalSlideTimer) clearInterval(modalSlideTimer);
   modalSlideTimer = setInterval(() => {
@@ -1329,6 +1307,9 @@ const closeProject = () => {
   projectModal.classList.remove('open');
   document.body.classList.remove('modal-open');
   if (modalSlideTimer) { clearInterval(modalSlideTimer); modalSlideTimer = null; }
+  const carouselEl = document.getElementById('carousel');
+  carouselEl.classList.remove('has-images');
+  carouselEl.style.height = '';
 };
 
 (function(){

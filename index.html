@@ -1264,7 +1264,7 @@ const openProject = key => {
       const s = document.createElement('div');
       s.className = 'carousel-slide';
       s.style.cssText = 'background:#1B100A;position:relative;overflow:hidden;';
-      s.innerHTML = `<span class="carousel-slide-num">${i+1} / ${realImgs.length}</span><img src="${img.src}" alt="${img.alt}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />`;
+      s.innerHTML = `<span class="carousel-slide-num">${i+1} / ${realImgs.length}</span><img src="${img.src}" alt="${img.alt}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;" />`;
       carouselTrack.appendChild(s);
       const d = document.createElement('button');
       d.setAttribute('aria-label', 'Foto ' + (i+1));

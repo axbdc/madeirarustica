@@ -447,6 +447,9 @@
   /* ---------- Project Modal ---------- */
   .project-modal { max-width: 760px; padding: 0; overflow-x: hidden; overflow-y: auto; }
   .project-modal .modal-close { background: rgba(250,246,238,0.92); backdrop-filter: blur(8px); }
+  @media (max-width: 768px) {
+  .project-modal .modal-close { top: auto; bottom: 18px; }
+}
   .carousel { position: relative; aspect-ratio: 16/9; background: var(--c-light); overflow: hidden; border-radius: 20px 20px 0 0; }
   .carousel.has-images { aspect-ratio: auto; background: var(--c-bg); }
   .carousel-track { position: absolute; inset: 0; display: flex; transition: transform .55s var(--ease); }

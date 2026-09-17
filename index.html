@@ -448,11 +448,20 @@
   .project-modal { max-width: 760px; padding: 0; overflow-x: hidden; overflow-y: auto; }
   .project-modal .modal-close { background: rgba(250,246,238,0.92); backdrop-filter: blur(8px); }
   @media (max-width: 768px) {
+  .project-modal { overflow: visible; }
+  .project-modal-scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 90vh;
+    border-radius: 0 0 20px 20px;
+  }
   .project-modal .modal-close {
-    border-radius: 10px;
+    top: -24px;
+    right: -2px;
+    border-radius: 10px 10px 0 0;
     background: linear-gradient(145deg, var(--c-wood) 0%, var(--c-brown) 100%);
     color: var(--c-cream);
-    box-shadow: 0 4px 10px rgba(42,26,15,0.35);
+    box-shadow: none;
   }
   .project-modal .modal-close:hover {
     background: var(--c-deep);
@@ -1005,6 +1014,7 @@ Não existem no mercado, pela sua especificidade única e própria.</p>
     <button class="modal-close" id="project-close" aria-label="Fechar">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
+    <div class="project-modal-scroll">
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track"></div>
       <button class="carousel-btn prev" id="carousel-prev" aria-label="Foto anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -1017,6 +1027,7 @@ Não existem no mercado, pela sua especificidade única e própria.</p>
       <div class="project-meta" id="project-meta"></div>
       <p class="desc" id="project-desc">—</p>
       <a href="#contacto" class="btn btn-primary" id="project-cta"><span data-i18n="proj_cta">Pedir um projecto semelhante</span> <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
     </div>
   </div>
 </div>
